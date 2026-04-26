@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Dedicate a Fragrance to Your Maa 🌸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================
+   CSS VARIABLES & RESET
+   =========================== */
+:root {
+  --saffron: #C8501A;
+  --gold: #D4A843;
+  --gold-light: #e8c96a;
+  --ivory: #FDF6EC;
+  --blush: #F2C4CE;
+  --deep-brown: #3E1F00;
+  --muted: #9b7b5a;
+  --card-bg: #FFF8F0;
+  --shadow: rgba(200, 80, 26, 0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--ivory);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--deep-brown);
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 0 0 40px 0;
+  animation: fadeIn 0.6s ease forwards;
+  position: relative;
+}
+
+.screen.active { display: flex; flex-direction: column; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   SHARED COMPONENTS
+   =========================== */
+.top-bar {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--saffron), var(--gold), var(--blush), var(--gold), var(--saffron));
+}
+
+.screen-inner {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 22px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--saffron);
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.screen-subtitle {
+  font-size: 0.93rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--saffron), #e06030);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(200,80,26,0.3);
+  transition: all 0.25s;
+  margin-top: auto;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(200,80,26,0.4); }
+.btn-primary:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  color: var(--saffron);
+  border: 2px solid var(--saffron);
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { background: rgba(200,80,26,0.06); }
+
+.gold-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 18px auto;
+}
+
+/* FLORAL SVG DECORATION */
+.floral-top, .floral-bottom {
+  width: 100%;
+  text-align: center;
+  opacity: 0.55;
+  margin: 6px 0;
+}
+
+/* ===========================
+   SCREEN 1 — LANDING
+   =========================== */
+#screen1 {
+  background: linear-gradient(160deg, #fff7f0 0%, #fef0e0 60%, #fdf6ec 100%);
+}
+
+.landing-hero {
+  text-align: center;
+  padding: 40px 0 24px;
+}
+
+.landing-diya {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 12px;
+  animation: floatDiya 3s ease-in-out infinite;
+}
+@keyframes floatDiya {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.landing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: var(--saffron);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.landing-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.counter-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff1e0, #fde8c8);
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  color: var(--deep-brown);
+  margin-bottom: 32px;
+  font-weight: 400;
+  box-shadow: 0 2px 12px rgba(212,168,67,0.15);
+}
+.counter-badge strong { color: var(--saffron); font-weight: 700; }
+
+.landing-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ===========================
+   SCREEN 2 — DETAILS
+   =========================== */
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.97rem;
+  background: var(--card-bg);
+  color: var(--deep-brown);
+  transition: border-color 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-input:focus { border-color: var(--gold); background: #fff; }
+
+.form-select {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.97rem;
+  background: var(--card-bg);
+  color: var(--deep-brown);
+  transition: border-color 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8501A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+.form-select:focus { border-color: var(--gold); }
+
+.city-wrap { position: relative; }
+
+.city-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: #fff;
+  border: 1.5px solid var(--gold);
+  border-radius: 12px;
+  list-style: none;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 6px 24px rgba(200,80,26,0.12);
+  margin-top: 4px;
+  display: none;
+}
+.city-suggestions.open { display: block; }
+.city-suggestions li {
+  padding: 11px 16px;
+  font-size: 0.95rem;
+  color: var(--deep-brown);
+  cursor: pointer;
+  border-bottom: 1px solid #f5e8d5;
+  transition: background 0.15s;
+}
+.city-suggestions li:last-child { border-bottom: none; }
+.city-suggestions li:hover, .city-suggestions li.active { background: #fff4ec; color: var(--saffron); }
+.city-suggestions li strong { color: var(--saffron); }
+
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  padding: 9px 18px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.pill.selected {
+  border-color: var(--saffron);
+  background: linear-gradient(135deg, #fff0e5, #fde8d0);
+  color: var(--saffron);
+  font-weight: 700;
+}
+
+/* ===========================
+   SCREEN 3 — QUALITY PICKER
+   =========================== */
+.quality-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.quality-card {
+  padding: 14px 10px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 14px;
+  background: var(--card-bg);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+  user-select: none;
+}
+.quality-card:active { transform: scale(0.97); }
+.quality-card .q-emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+.quality-card .q-label { font-size: 0.82rem; color: var(--deep-brown); font-weight: 400; line-height: 1.35; }
+.quality-card.selected {
+  border-color: var(--saffron);
+  background: linear-gradient(135deg, #fff4ec, #fde8d0);
+  box-shadow: 0 3px 14px rgba(200,80,26,0.14);
+}
+.quality-card.selected .q-label { color: var(--saffron); font-weight: 700; }
+
+.quality-count {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.quality-count span { color: var(--saffron); font-weight: 700; }
+
+/* ===========================
+   SCREEN 4 — FRAGRANCE REVEAL
+   =========================== */
+#screen4 {
+  background: linear-gradient(160deg, #1a0a00 0%, #2e1200 40%, #1a0800 100%);
+  color: var(--ivory);
+}
+
+#screen4 .screen-inner {
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding-top: 50px;
+  min-height: calc(100vh - 6px);
+}
+
+.diya-wrap {
+  margin-bottom: 28px;
+}
+
+.diya-svg {
+  width: 80px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.reveal-maa-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #c8a97e;
+  margin-bottom: 10px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.reveal-fragrance-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1.1;
+  margin-bottom: 14px;
+  text-shadow: 0 0 30px rgba(212,168,67,0.4);
+  animation: glowGold 2s ease-in-out infinite alternate;
+}
+@keyframes glowGold {
+  from { text-shadow: 0 0 20px rgba(212,168,67,0.3); }
+  to { text-shadow: 0 0 40px rgba(212,168,67,0.6); }
+}
+
+.reveal-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #d9b89a;
+  line-height: 1.65;
+  margin-bottom: 18px;
+  padding: 0 12px;
+}
+
+.reveal-line {
+  font-size: 0.78rem;
+  color: #8a6a4a;
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+#screen4 .gold-divider {
+  background: linear-gradient(90deg, transparent, rgba(212,168,67,0.5), transparent);
+  margin: 16px auto;
+}
+
+#screen4 .btn-primary {
+  margin-top: 32px;
+  background: linear-gradient(135deg, var(--gold), #b8882a);
+  color: var(--deep-brown);
+}
+
+/* FLAME ANIMATION */
+.flame {
+  transform-origin: center bottom;
+  animation: flicker 1.8s ease-in-out infinite alternate;
+}
+@keyframes flicker {
+  0% { transform: scaleX(1) rotate(-2deg); opacity: 1; }
+  25% { transform: scaleX(0.95) rotate(1deg); opacity: 0.9; }
+  50% { transform: scaleX(1.05) rotate(-1deg); opacity: 1; }
+  75% { transform: scaleX(0.93) rotate(2deg); opacity: 0.85; }
+  100% { transform: scaleX(1) rotate(-1deg); opacity: 1; }
+}
+
+/* ===========================
+   SCREEN 5 — FEEDBACK
+   =========================== */
+.feedback-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.feedback-card {
+  padding: 16px 18px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 14px;
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: all 0.22s;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+}
+.feedback-card .f-emoji { font-size: 1.6rem; flex-shrink: 0; }
+.feedback-card .f-label { font-size: 0.96rem; color: var(--deep-brown); font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+.feedback-card.selected {
+  border-color: var(--saffron);
+  background: linear-gradient(135deg, #fff4ec, #fde8d0);
+  box-shadow: 0 3px 16px rgba(200,80,26,0.15);
+}
+.feedback-card.selected .f-label { color: var(--saffron); font-weight: 600; }
+
+/* ===========================
+   SCREEN 6 — IMAGE CARD
+   =========================== */
+#screen6 {
+  background: linear-gradient(160deg, #fff7f0, #fdf0e2);
+}
+
+.canvas-wrap {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto 22px;
+  position: relative;
+}
+
+#shareCanvas {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(200,80,26,0.18);
+  display: block;
+}
+
+
+
+
+
+.mangaldeep-brand {
+  text-align: center;
+  margin: 10px auto 6px;
+}
+.mangaldeep-svg {
+  width: 160px;
+  height: 40px;
+  display: inline-block;
+}
+
+.share-nudge {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.btn-whatsapp-big {
+  display: block;
+  width: 100%;
+  padding: 17px;
+  background: linear-gradient(135deg, #25D366, #1aad51);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 22px rgba(37,211,102,0.32);
+  transition: all 0.2s;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+.btn-whatsapp-big:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.4); }
+
+.btn-save-small {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  color: var(--muted);
+  border: 1.5px solid #e0cdb8;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-save-small:hover { border-color: var(--gold); color: var(--deep-brown); }
+
+/* ===========================
+   SCREEN 6 — FEEDBACK (pre-card)
+   =========================== */
+#screen6 {
+  background: linear-gradient(160deg, #fff7f0, #fdf0e2);
+}
+
+/* ===========================
+   SCREEN 7 — CARD (final)
+   =========================== */
+#screen7 {
+  background: linear-gradient(160deg, #fff7f0, #fdf0e2);
+}
+
+.optional-question {
+  font-size: 0.9rem;
+  color: var(--deep-brown);
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.93rem;
+  background: #fff;
+  color: var(--deep-brown);
+  resize: none;
+  min-height: 90px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+}
+.form-textarea:focus { border-color: var(--gold); }
+
+.optional-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-submit-feedback {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--gold), #b8882a);
+  color: var(--deep-brown);
+  border: none;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-skip {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  color: var(--muted);
+  border: 1.5px solid #e8d5be;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-skip:hover { border-color: var(--muted); }
+
+.closing-line {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--saffron);
+  margin-top: 24px;
+  padding: 18px 0;
+}
+
+/* Progress dots */
+.progress-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 24px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e8d5be;
+  transition: background 0.3s;
+}
+.dot.active { background: var(--saffron); }
+.dot.done { background: var(--gold); }
+
+/* Back button */
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 4px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+.btn-back:hover { color: var(--saffron); }
+
+/* Mangaldeep logo image */
+.mangaldeep-logo-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+  animation: floatDiya 3s ease-in-out infinite;
+}
+.mangaldeep-logo-fallback {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 12px;
+  text-align: center;
+  animation: floatDiya 3s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+
+<!-- ===========================
+     SCREEN 1 — LANDING
+     =========================== -->
+<div id="screen1" class="screen active">
+  <div class="top-bar"></div>
+  <div class="screen-inner">
+    <div class="landing-hero">
+      <svg class="floral-top" viewBox="0 0 320 60" xmlns="http://www.w3.org/2000/svg" height="50">
+        <g opacity="0.6">
+          <ellipse cx="160" cy="30" rx="60" ry="4" fill="none" stroke="#D4A843" stroke-width="1"/>
+          <circle cx="100" cy="30" r="6" fill="#F2C4CE" opacity="0.7"/>
+          <circle cx="220" cy="30" r="6" fill="#F2C4CE" opacity="0.7"/>
+          <circle cx="60" cy="30" r="4" fill="#D4A843" opacity="0.5"/>
+          <circle cx="260" cy="30" r="4" fill="#D4A843" opacity="0.5"/>
+          <text x="160" y="36" text-anchor="middle" fill="#C8501A" font-size="18" opacity="0.5">❋</text>
+          <text x="80" y="36" text-anchor="middle" fill="#D4A843" font-size="14" opacity="0.5">✿</text>
+          <text x="240" y="36" text-anchor="middle" fill="#D4A843" font-size="14" opacity="0.5">✿</text>
+        </g>
+      </svg>
+
+      <div id="landingLogoWrap"></div>
+      <h1 class="landing-title">Dedicate a Fragrance<br>to your Maa 🌸</h1>
+      <p class="landing-subtitle">This Mother's Day, tell her<br>what she means to you</p>
+
+      <div class="counter-badge">
+        🪔 <strong id="liveCount">47</strong> people have dedicated a fragrance to their Maa today
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="goTo(2)">Begin 🌸</button>
+    <p class="landing-footer">Powered by Mangaldeep</p>
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 2 — DETAILS
+     =========================== -->
+<div id="screen2" class="screen">
+  <div class="top-bar"></div>
+  <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(1)">← Back</button>
+    <div class="progress-dots" id="dots2">
+      <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <h2 class="screen-title">Tell us about you<br>& your Maa</h2>
+    <div class="gold-divider"></div>
+
+    <div class="form-group">
+      <label class="form-label">What should we call you?</label>
+      <input type="text" id="userName" class="form-input" placeholder="Your name" oninput="checkDetails()">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">And your Maa's beautiful name?</label>
+      <input type="text" id="maaName" class="form-input" placeholder="Maa's name" oninput="checkDetails()">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Where are you from?</label>
+      <div class="city-wrap">
+        <input type="text" id="userCity" class="form-input" placeholder="City, town or village..." autocomplete="off" oninput="onCityInput()" onblur="hideCitySuggestions()">
+        <ul id="citySuggestions" class="city-suggestions"></ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">A little about you</label>
+      <div class="pill-group">
+        <div class="pill" onclick="selectAge(this, 'Under 18')">Under 18</div>
+        <div class="pill" onclick="selectAge(this, '19–25')">19–25</div>
+        <div class="pill" onclick="selectAge(this, '26–35')">26–35</div>
+        <div class="pill" onclick="selectAge(this, '36–50')">36–50</div>
+        <div class="pill" onclick="selectAge(this, '50+')">50+</div>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="btnDetails" onclick="goTo(3)" disabled>Find her fragrance 🌸</button>
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 3 — QUALITY PICKER
+     =========================== -->
+<div id="screen3" class="screen">
+  <div class="top-bar"></div>
+  <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(2)">← Back</button>
+    <div class="progress-dots">
+      <div class="dot done"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <h2 class="screen-title">Pick 3 words that<br>describe your Maa</h2>
+    <p class="quality-count">Selected: <span id="qualityCount">0</span> / 3</p>
+
+    <div class="quality-grid" id="qualityGrid"></div>
+    <button class="btn-primary" id="btnQualities" onclick="goTo(4)" disabled>See her fragrance 🌸</button>
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 4 — FRAGRANCE REVEAL
+     =========================== -->
+<div id="screen4" class="screen">
+  <div class="top-bar" style="background: linear-gradient(90deg, #4a1800, var(--gold), #4a1800);"></div>
+  <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(3)" style="color:#c8a97e">← Back</button>
+    <div class="diya-wrap" id="revealLogoWrap"></div>
+
+    <p class="reveal-maa-name" id="revealMaaLine"></p>
+    <div class="gold-divider"></div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px 0;">
+      <h2 class="reveal-fragrance-name" id="revealFragName" style="margin-bottom:14px"></h2>
+      <p class="reveal-tagline" id="revealTagline" style="margin-bottom:0"></p>
+    </div>
+    <div class="gold-divider"></div>
+    <p class="reveal-line" id="revealLine"></p>
+
+    <button class="btn-primary" onclick="goTo(5)">Create her card now 🌸</button>
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 5 — FEEDBACK
+     =========================== -->
+<div id="screen5" class="screen">
+  <div class="top-bar"></div>
+  <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(4)">← Back</button>
+    <div class="progress-dots">
+      <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
+    </div>
+    <h2 class="screen-title">If your Maa were here today...</h2>
+    <p class="screen-subtitle">What would she have loved most?</p>
+
+    <div class="feedback-cards">
+      <div class="feedback-card" onclick="selectFeedback(this, 0)">
+        <span class="f-emoji">🌸</span>
+        <span class="f-label">The flowers & decoration</span>
+      </div>
+      <div class="feedback-card" onclick="selectFeedback(this, 1)">
+        <span class="f-emoji">🪔</span>
+        <span class="f-label">The fragrance in the air</span>
+      </div>
+      <div class="feedback-card" onclick="selectFeedback(this, 2)">
+        <span class="f-emoji">🎵</span>
+        <span class="f-label">The bhajans & music</span>
+      </div>
+      <div class="feedback-card" onclick="selectFeedback(this, 3)">
+        <span class="f-emoji">👐</span>
+        <span class="f-label">The warmth of everyone around</span>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="btnFeedback" onclick="goTo(6)" disabled>Make her card — it takes 10 seconds ✨</button>
+
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 6 — FEEDBACK (before card)
+     =========================== -->
+<div id="screen6" class="screen">
+  <div class="top-bar"></div>
+  <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(5)">← Back</button>
+    <div class="progress-dots">
+      <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div>
+    </div>
+    <h2 class="screen-title">One last thing 🌸</h2>
+    <p class="screen-subtitle" style="margin-bottom:8px">How was today's experience? Your words go straight to the Mangaldeep team. <span style="color:var(--muted);font-size:0.82rem">(optional)</span></p>
+
+    <div class="form-group" style="margin-bottom:14px">
+      <p class="optional-question">Tell us about the bhajans, the agarbatti, the activations — what moved you, and what we can do even better next time.</p>
+      <textarea class="form-textarea" id="openFeedback" placeholder="e.g. The bhajans were beautiful, the fragrance in the air was divine, next time I'd love to... 🙏" style="margin-top:10px"></textarea>
+    </div>
+
+    <button class="btn-primary" onclick="submitFeedbackAndContinue()">Show me her card ✨</button>
+    <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--muted);font-style:italic">(skip if everything was absolutely perfect 🙏)</p>
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 7 — IMAGE CARD + SHARE (final screen)
+     =========================== -->
+<div id="screen7" class="screen">
+  <div class="top-bar"></div>
+  <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(6)">← Back</button>
+    <div class="progress-dots">
+      <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div>
+    </div>
+    <h2 class="screen-title">Her card is ready 🌸</h2>
+    <p class="screen-subtitle">Send it to her — she'll love it</p>
+
+    <div class="canvas-wrap">
+      <canvas id="shareCanvas"></canvas>
+    </div>
+
+    <!-- Mangaldeep branding -->
+    <div class="mangaldeep-brand">
+      <svg viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" class="mangaldeep-svg">
+        <g transform="translate(0,2)">
+          <ellipse cx="18" cy="30" rx="10" ry="4" fill="#C8501A" opacity="0.9"/>
+          <ellipse cx="18" cy="29" rx="8" ry="3" fill="#e07030"/>
+          <ellipse cx="18" cy="28" rx="4" ry="2" fill="#ffcc44" opacity="0.6"/>
+          <line x1="18" y1="26" x2="18" y2="18" stroke="#6b3a00" stroke-width="1" stroke-linecap="round"/>
+          <ellipse cx="18" cy="14" rx="4" ry="6" fill="url(#fl2)" opacity="0.9"/>
+          <ellipse cx="18" cy="16" rx="2.5" ry="4" fill="#fff7c0" opacity="0.7"/>
+          <defs>
+            <radialGradient id="fl2" cx="50%" cy="60%" r="50%">
+              <stop offset="0%" stop-color="#fffbe0"/>
+              <stop offset="50%" stop-color="#ffb020"/>
+              <stop offset="100%" stop-color="#c8501a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+        </g>
+        <text x="34" y="22" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="#C8501A">Mangaldeep</text>
+        <text x="34" y="34" font-family="Lato, sans-serif" font-size="9" fill="#9b7b5a" letter-spacing="1.5">AGARBATTI</text>
+      </svg>
+    </div>
+
+    <p class="share-nudge">💚 Send it to her directly on WhatsApp — she'll love it</p>
+    <button class="btn-whatsapp-big" onclick="shareWhatsApp()">Send to Maa on WhatsApp 💚</button>
+    <button class="btn-save-small" onclick="saveImage()">Save to my phone first 📸</button>
+  </div>
+</div>
+
+<!-- ===========================
+     SCREEN 8 — THANK YOU (after WhatsApp share)
+     =========================== -->
+<div id="screen8" class="screen">
+  <div class="top-bar"></div>
+  <div class="screen-inner" style="align-items:center;justify-content:center;text-align:center">
+    <div id="thankYouLogoWrap" style="margin-bottom:18px"></div>
+
+    <h2 class="screen-title" style="font-size:2.1rem">Your dedication has been lit 🪔</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--muted);font-style:italic;line-height:1.7;margin:10px 0 28px" id="thankYouLine"></p>
+
+    <div class="gold-divider" style="margin:0 auto 28px"></div>
+
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--deep-brown);line-height:1.75;padding:0 8px">
+      Every agarbatti you've ever lit for her —<br>
+      she felt it. Even before you knew<br>
+      you were praying.
+    </p>
+
+    <div class="gold-divider" style="margin:28px auto"></div>
+
+    <p style="font-size:0.82rem;color:var(--muted);font-style:italic">Made with love by Mangaldeep 🌸</p>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   ✏️  CONFIG — EDIT THIS BLOCK FOR NEW EVENTS
+   ===================================================== */
+const CONFIG = {
+  eventName: "Mangaldeep Mother's Day",
+  occasion: "Mother's Day",
+  relationship: "Maa",
+  hashtag: "#DedicateToMaa",
+  seedCount: 47,
+  googleScriptURL: "https://script.google.com/macros/s/AKfycbwraPE83M3MlzU14HHpNLw-_QmZJT31zbSRlmcmvI9soeHlN_tGuehu0xl3MBz2Y6GB/exec",
+  mangaldeepLogoURL: "https://centraexports.com/wp-content/uploads/2025/10/logo.jpeg"
+};
+
+/* =====================================================
+   ✏️  FRAGRANCES — Edit name, tagline, lineFull
+   ===================================================== */
+const FRAGRANCES = [
+  { id: "rose",        name: "Rose",                line: "Classic",  lineFull: "Classic Collection",           tagline: "Warm as her embrace, blooming endlessly" },
+  { id: "vetiver",     name: "Sandalwood & Vetiver", line: "Fusion",   lineFull: "Fusion Collection",            tagline: "Rooted like sandalwood, unshakeable like her love" },
+  { id: "mogra",       name: "Mogra",               line: "Classic",  lineFull: "Classic Collection",           tagline: "Her joy filled every room before she even entered" },
+  { id: "divinity",    name: "Divinity",            line: "Divinity", lineFull: "Divinity — Sandalwood & Saffron", tagline: "Sacred, grounding, eternal — like every prayer she lit for you" },
+  { id: "lavender",    name: "Lavender & Sage",     line: "Fusion",   lineFull: "Fusion Collection",            tagline: "Quiet strength. The kind that never asks for credit" },
+  { id: "jasmine",     name: "Jasmine",             line: "Classic",  lineFull: "Classic Collection",           tagline: "Pure as jasmine, asking nothing, giving everything" },
+  { id: "greenforest", name: "Green Forest",        line: "Nature",   lineFull: "Nature Collection",            tagline: "Ancient like forests, wise like her silence" },
+  { id: "scent",       name: "Scent",               line: "Scent",    lineFull: "Scent Line",                   tagline: "She carried grace in every step, fragrance in every memory" },
+  { id: "chandan",     name: "Classic Chandan",     line: "Classic",  lineFull: "Classic Collection",           tagline: "Steady, timeless, always there — like sandalwood in every prayer" },
+  { id: "flowervalley",name: "Flower Valley",       line: "Nature",   lineFull: "Nature Collection",            tagline: "She made ordinary days feel like festivals" }
+];
+
+/* =====================================================
+   ✏️  QUALITIES — Labels and which fragrance they map to
+   ===================================================== */
+const QUALITIES = [
+  { id: "q1",  label: "Warm & Loving",       emoji: "🌸", fragranceId: "rose" },
+  { id: "q2",  label: "Strong & Resilient",  emoji: "🏔️", fragranceId: "vetiver" },
+  { id: "q3",  label: "Joyful & Festive",    emoji: "✨", fragranceId: "mogra" },
+  { id: "q4",  label: "Spiritual & Devoted", emoji: "🕉️", fragranceId: "divinity" },
+  { id: "q5",  label: "Calm & Patient",      emoji: "🍃", fragranceId: "lavender" },
+  { id: "q6",  label: "Pure & Selfless",     emoji: "🌺", fragranceId: "jasmine" },
+  { id: "q7",  label: "Grounded & Wise",     emoji: "🌿", fragranceId: "greenforest" },
+  { id: "q8",  label: "Graceful & Refined",  emoji: "👑", fragranceId: "scent" },
+  { id: "q9",  label: "Protective & Steady", emoji: "🌳", fragranceId: "chandan" },
+  { id: "q10", label: "Free-spirited & Joyful", emoji: "🌻", fragranceId: "flowervalley" }
+];
+
+/* =====================================================
+   ✏️  MESSAGES — Card text per fragrance
+   [feedbackLine] is replaced dynamically
+   ===================================================== */
+const MESSAGES = {
+  rose:        { cardText: "You are warmth before the sun rises. The kind of love that doesn't announce itself — it simply surrounds everything. Like rose, you are timeless. You bloomed in every season of our life, never asking for the right weather. Every little thing you did without being asked — we noticed. We always noticed. [feedbackLine] On this Mother's Day, know that your fragrance lives in every corner of our home." },
+  vetiver:     { cardText: "Strength in you was never loud. It was the kind that quietly held everything together while everyone else fell apart. Like sandalwood and vetiver, you were rooted when we were not. You worked when no one was watching. You carried what no one knew you were carrying. [feedbackLine] The world stands because of mothers like you." },
+  mogra:       { cardText: "Joy arrived with you. Not the loud kind — the quiet kind that fills a room before you even enter it. Like mogra, you were the festival in ordinary days. You turned simple meals into memories and small moments into traditions. You laughed first and worried last, even when you were worried the most. [feedbackLine] Your fragrance is celebration. It always will be." },
+  divinity:    { cardText: "Some people carry temples within them. You are one of them. Like sandalwood and saffron, your presence has always been sacred — grounding us when the world felt uncertain, lifting us when we forgot our own worth. Every prayer you lit was for us. We carry that with us every single day. [feedbackLine] You are not just our mother. You are our first place of worship." },
+  lavender:    { cardText: "You were calm when the world was not. That takes more courage than anyone gives you credit for. Like lavender and sage, you brought stillness into chaos — a word, a hand, sometimes just your presence in the room was enough. You never rushed our healing. You just stayed. [feedbackLine] That patience is the rarest kind of love." },
+  jasmine:     { cardText: "Purity is rare. You have always had it. Like jasmine, you gave without keeping score. You asked for nothing and gave everything — quietly, consistently, without ceremony. You were the one who remembered the small things — the appointments, the anniversaries, the exact way we liked things done. [feedbackLine] Your love is jasmine — delicate on the surface, impossibly strong underneath." },
+  greenforest: { cardText: "Wisdom lives quietly in you. Like a forest, you gave us shade before we knew we needed it. You saw things in us before we saw them in ourselves. You spoke less and understood more. Your advice didn't come wrapped in rules — it came wrapped in stories, in gestures, in the way you lived. [feedbackLine] We are still learning from you." },
+  scent:       { cardText: "Grace is not something you perform. In you, it simply exists. Like a refined, lingering perfume, your presence stays long after you have left the room. You showed us how to carry ourselves — with dignity, with softness, with the kind of quiet confidence that needs no applause. [feedbackLine] You are, and always will be, our idea of elegance." },
+  chandan:     { cardText: "You were always there. Not sometimes. Not when convenient. Always. Like chandan, you were the constant — the scent that stayed even after everything else faded. Through every storm, every mistake we made, every time we needed someone who wouldn't leave — there you were. [feedbackLine] That kind of love doesn't get enough credit. Today, it does." },
+  flowervalley:{ cardText: "You made everything lighter. That's a gift most people never name. Like a valley of flowers, you brought colour to seasons that would have otherwise been grey. You found reasons to celebrate when the rest of us forgot to look. You danced in the kitchen. You hummed during prayers. [feedbackLine] The world is more beautiful because you are in it." }
+};
+
+/* =====================================================
+   ✏️  CARD DESIGN — Card visual settings
+   ===================================================== */
+const CARD_DESIGN = {
+  bgColor: "#FDF6EC",
+  accentColor: "#D4A843",
+  fontColor: "#3E1F00",
+  borderStyle: "floral"
+};
+
+/* =====================================================
+   FEEDBACK LINES — maps answer index to replacement text
+   ===================================================== */
+const FEEDBACK_LINES = [
+  "If you were here today, I know you would have stopped at every flower.",
+  "If you were here today, you would have closed your eyes at the first fragrance.",
+  "If you were here today, you would have known every word to every bhajan.",
+  "If you were here today, you would have made five new friends before the first hour."
+];
+
+/* =====================================================
+   APP STATE
+   ===================================================== */
+let state = {
+  name: "",
+  maaName: "",
+  city: "",
+  age: "",
+  selectedQualities: [],
+  fragranceId: null,
+  feedbackIndex: null,
+  source: ""
+};
+
+/* =====================================================
+   INIT
+   ===================================================== */
+window.addEventListener('DOMContentLoaded', () => {
+  // Read ref param
+  const params = new URLSearchParams(window.location.search);
+  state.source = params.get('ref') || 'direct';
+
+  // Render Mangaldeep logos (or fallback emoji)
+  renderLogos();
+
+  // Fetch live count
+  fetchCount();
+
+  // Build quality grid
+  buildQualityGrid();
+});
+
+function renderLogos() {
+  const url = CONFIG.mangaldeepLogoURL;
+
+  // Landing screen logo
+  const landingWrap = document.getElementById('landingLogoWrap');
+  if (landingWrap) {
+    if (url) {
+      landingWrap.innerHTML = `<img src="${url}" class="mangaldeep-logo-img" alt="Mangaldeep" onerror="this.outerHTML='<span class=\\'mangaldeep-logo-fallback\\'>🪔</span>'">`;
+    } else {
+      landingWrap.innerHTML = `<span class="mangaldeep-logo-fallback">🪔</span>`;
+    }
+  }
+
+  // Reveal screen logo
+  const revealWrap = document.getElementById('revealLogoWrap');
+  if (revealWrap) {
+    if (url) {
+      revealWrap.innerHTML = `<img src="${url}" class="mangaldeep-logo-img" alt="Mangaldeep" style="filter:brightness(1.1)" onerror="this.outerHTML='<span class=\\'mangaldeep-logo-fallback\\'>🪔</span>'">`;
+    } else {
+      revealWrap.innerHTML = `<span class="mangaldeep-logo-fallback">🪔</span>`;
+    }
+  }
+}
+
+function fetchCount() {
+  const el = document.getElementById('liveCount');
+  if (!CONFIG.googleScriptURL) { el.textContent = CONFIG.seedCount; return; }
+  fetch(CONFIG.googleScriptURL + '?action=getCount')
+    .then(r => r.json())
+    .then(d => { el.textContent = (d.count || 0) + CONFIG.seedCount; })
+    .catch(() => { el.textContent = CONFIG.seedCount; });
+}
+
+function buildQualityGrid() {
+  const grid = document.getElementById('qualityGrid');
+  QUALITIES.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'quality-card';
+    card.dataset.id = q.id;
+    card.dataset.fragranceId = q.fragranceId;
+    card.innerHTML = `<span class="q-emoji">${q.emoji}</span><span class="q-label">${q.label}</span>`;
+    card.addEventListener('click', () => toggleQuality(card, q));
+    grid.appendChild(card);
+  });
+}
+
+/* =====================================================
+   SCREEN NAVIGATION
+   ===================================================== */
+function goTo(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const next = document.getElementById('screen' + n);
+  next.classList.add('active');
+  window.scrollTo(0, 0);
+
+  if (n === 4) populateReveal();
+  if (n === 7) drawCanvas();
+}
+
+/* =====================================================
+   SCREEN 2 — DETAILS LOGIC
+   ===================================================== */
+function selectAge(el, val) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  state.age = val;
+  checkDetails();
+}
+
+function checkDetails() {
+  state.name = document.getElementById('userName').value.trim();
+  state.maaName = document.getElementById('maaName').value.trim();
+  state.city = document.getElementById('userCity').value.trim();
+  const ok = state.name && state.maaName && state.city && state.age;
+  document.getElementById('btnDetails').disabled = !ok;
+}
+
+/* =====================================================
+   CITY AUTOCOMPLETE
+   ===================================================== */
+const CITY_LIST = [
+  // UP & Dham belt — most likely for Vrindavan events
+  "Vrindavan","Mathura","Agra","Aligarh","Meerut","Bareilly","Moradabad","Kanpur",
+  "Lucknow","Gorakhpur","Varanasi","Prayagraj","Ayodhya","Jhansi","Noida","Ghaziabad",
+  "Firozabad","Etawah","Mainpuri","Bulandshahr","Hapur","Muzaffarnagar","Saharanpur",
+  "Rampur","Bijnor","Shahjahanpur","Lakhimpur","Sitapur","Unnao","Rae Bareli",
+  // Raj & MP
+  "Jaipur","Jodhpur","Udaipur","Bikaner","Kota","Ajmer","Alwar","Bharatpur","Dhaulpur",
+  "Bhopal","Indore","Gwalior","Ujjain","Sagar","Ratlam","Dewas","Mandsaur",
+  // Delhi NCR
+  "Delhi","Gurgaon","Faridabad","Greater Noida","Sonipat","Panipat","Karnal",
+  // Haryana & Punjab
+  "Chandigarh","Ludhiana","Amritsar","Jalandhar","Patiala","Ambala","Hisar","Rohtak",
+  // Bihar & Jharkhand
+  "Patna","Muzaffarpur","Gaya","Bhagalpur","Darbhanga","Ranchi","Jamshedpur",
+  // Other major metros & cities
+  "Mumbai","Delhi","Bengaluru","Chennai","Hyderabad","Kolkata","Pune","Ahmedabad",
+  "Surat","Vadodara","Rajkot","Kochi","Coimbatore","Madurai","Vijayawada",
+  "Visakhapatnam","Bhubaneswar","Raipur","Dehradun","Haridwar","Rishikesh",
+  "Guwahati","Jammu","Srinagar","Leh","Nagpur","Aurangabad","Nashik","Kolhapur",
+  // Tirthas & smaller pilgrim towns
+  "Dwarka","Tirupati","Shirdi","Nanded","Solapur","Pandharpur","Nathdwara",
+  "Pushkar","Khatu Syamji","Govardhan","Barsana","Nandgaon","Deeg","Kamyavan"
+];
+
+let cityHighlight = -1;
+
+function onCityInput() {
+  checkDetails();
+  const val = document.getElementById('userCity').value.trim().toLowerCase();
+  const ul = document.getElementById('citySuggestions');
+  cityHighlight = -1;
+
+  if (val.length < 1) { ul.classList.remove('open'); ul.innerHTML = ''; return; }
+
+  const matches = CITY_LIST.filter(c => c.toLowerCase().startsWith(val)).slice(0, 7);
+  if (!matches.length) { ul.classList.remove('open'); ul.innerHTML = ''; return; }
+
+  ul.innerHTML = matches.map(c => {
+    const bold = `<strong>${c.slice(0, val.length)}</strong>${c.slice(val.length)}`;
+    return `<li onmousedown="pickCity('${c}')">${bold}</li>`;
+  }).join('');
+  ul.classList.add('open');
+}
+
+function pickCity(name) {
+  document.getElementById('userCity').value = name;
+  document.getElementById('citySuggestions').classList.remove('open');
+  state.city = name;
+  checkDetails();
+}
+
+function hideCitySuggestions() {
+  setTimeout(() => {
+    document.getElementById('citySuggestions').classList.remove('open');
+  }, 150);
+}
+
+/* also allow keyboard nav */
+document.addEventListener('keydown', function(e) {
+  const ul = document.getElementById('citySuggestions');
+  if (!ul || !ul.classList.contains('open')) return;
+  const items = ul.querySelectorAll('li');
+  if (e.key === 'ArrowDown') { cityHighlight = Math.min(cityHighlight+1, items.length-1); }
+  else if (e.key === 'ArrowUp') { cityHighlight = Math.max(cityHighlight-1, 0); }
+  else if (e.key === 'Enter' && cityHighlight >= 0) { items[cityHighlight].dispatchEvent(new Event('mousedown')); return; }
+  else return;
+  items.forEach((li,i) => li.classList.toggle('active', i === cityHighlight));
+});
+function toggleQuality(card, q) {
+  const isSelected = card.classList.contains('selected');
+  if (!isSelected && state.selectedQualities.length >= 3) return;
+
+  if (isSelected) {
+    card.classList.remove('selected');
+    state.selectedQualities = state.selectedQualities.filter(id => id !== q.id);
+  } else {
+    card.classList.add('selected');
+    state.selectedQualities.push(q.id);
+    if (state.selectedQualities.length === 1) {
+      state.fragranceId = q.fragranceId;
+    }
+  }
+
+  document.getElementById('qualityCount').textContent = state.selectedQualities.length;
+  document.getElementById('btnQualities').disabled = state.selectedQualities.length !== 3;
+}
+
+/* =====================================================
+   SCREEN 4 — REVEAL
+   ===================================================== */
+function populateReveal() {
+  const frag = FRAGRANCES.find(f => f.id === state.fragranceId) || FRAGRANCES[0];
+  document.getElementById('revealMaaLine').textContent = `${state.maaName}'s fragrance is...`;
+  document.getElementById('revealFragName').textContent = frag.name;
+  document.getElementById('revealTagline').textContent = frag.tagline;
+  document.getElementById('revealLine').textContent = `Captured in Mangaldeep's ${frag.lineFull}`;
+}
+
+/* =====================================================
+   SCREEN 5 — FEEDBACK SELECTION
+   ===================================================== */
+function selectFeedback(el, idx) {
+  document.querySelectorAll('.feedback-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.feedbackIndex = idx;
+  document.getElementById('btnFeedback').disabled = false;
+}
+
+/* =====================================================
+   SCREEN 7 — CANVAS CARD
+   ===================================================== */
+function drawCanvas() {
+  const canvas = document.getElementById('shareCanvas');
+  const SIZE = 1080;
+  canvas.width = SIZE;
+  canvas.height = SIZE;
+  const ctx = canvas.getContext('2d');
+
+  const frag = FRAGRANCES.find(f => f.id === state.fragranceId) || FRAGRANCES[0];
+  const msgTemplate = MESSAGES[state.fragranceId] || MESSAGES['rose'];
+  const feedbackLine = FEEDBACK_LINES[state.feedbackIndex] || FEEDBACK_LINES[0];
+  const fullMsg = msgTemplate.cardText.replace('[feedbackLine]', feedbackLine);
+
+  // ── Background ──
+  const bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
+  bg.addColorStop(0, '#FDF6EC');
+  bg.addColorStop(0.5, '#FFF8F0');
+  bg.addColorStop(1, '#FEF3E6');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  // ── Borders ──
+  ctx.strokeStyle = '#D4A843'; ctx.lineWidth = 6;
+  ctx.strokeRect(24, 24, SIZE-48, SIZE-48);
+  ctx.strokeStyle = '#F2C4CE'; ctx.lineWidth = 2;
+  ctx.strokeRect(40, 40, SIZE-80, SIZE-80);
+
+  // ── Corner florals ──
+  drawFloral(ctx, 56, 56, 0);
+  drawFloral(ctx, SIZE-56, 56, 90);
+  drawFloral(ctx, SIZE-56, SIZE-56, 180);
+  drawFloral(ctx, 56, SIZE-56, 270);
+
+  // ── Top decorative dots row ──
+  drawFloralBorder(ctx, SIZE, 80, 130);
+
+  // ════════════════════════════════════════
+  // ZONE 1: Dedication line  y=160..210
+  // ════════════════════════════════════════
+  ctx.font = 'italic 30px "Cormorant Garamond", serif';
+  ctx.fillStyle = '#9b7b5a';
+  ctx.textAlign = 'center';
+  ctx.fillText(`For ${state.maaName}, with love from ${state.name}`, SIZE/2, 185);
+
+  drawGoldLine(ctx, SIZE, 210);
+
+  // ════════════════════════════════════════
+  // ZONE 2: Fragrance name + tagline — CENTERED in zone 215..430
+  // ════════════════════════════════════════
+  const ZONE2_TOP = 215;
+  const ZONE2_BOT = 430;
+
+  // Measure fragrance name (may wrap)
+  ctx.font = 'bold 72px "Cormorant Garamond", serif';
+  const fragLabel = `You are ${frag.name} —`;
+  const fragLines = getWrappedLines(ctx, fragLabel, SIZE - 160);
+  const FRAG_LINE_H = 84;
+  const fragBlockH = fragLines.length * FRAG_LINE_H;
+
+  // Measure tagline (may wrap)
+  ctx.font = 'italic 34px "Cormorant Garamond", serif';
+  const tagLines = getWrappedLines(ctx, frag.tagline, SIZE - 160);
+  const TAG_LINE_H = 46;
+  const tagBlockH = tagLines.length * TAG_LINE_H;
+
+  const GAP_FRAG_TAG = 18;
+  const totalHeaderH = fragBlockH + GAP_FRAG_TAG + tagBlockH;
+
+  // Vertically center within zone
+  const zoneH = ZONE2_BOT - ZONE2_TOP;
+  const headerOffset = Math.round((zoneH - totalHeaderH) / 2);
+  let hY = ZONE2_TOP + Math.max(0, headerOffset) + FRAG_LINE_H - 8; // baseline of first line
+
+  // Draw fragrance name
+  ctx.font = 'bold 72px "Cormorant Garamond", serif';
+  ctx.fillStyle = '#C8501A';
+  ctx.textAlign = 'center';
+  fragLines.forEach((line, i) => {
+    ctx.fillText(line, SIZE/2, hY + i * FRAG_LINE_H);
+  });
+
+  // Draw tagline
+  ctx.font = 'italic 34px "Cormorant Garamond", serif';
+  ctx.fillStyle = '#6b3a00';
+  ctx.textAlign = 'center';
+  const tagY = hY + fragBlockH + GAP_FRAG_TAG;
+  tagLines.forEach((line, i) => {
+    ctx.fillText(line, SIZE/2, tagY + i * TAG_LINE_H);
+  });
+
+  drawGoldLine(ctx, SIZE, ZONE2_BOT + 10);
+
+  // ════════════════════════════════════════
+  // ZONE 3: Long message  y=460..820
+  // ════════════════════════════════════════
+  let msgY = 480;
+  ctx.font = '27px "Cormorant Garamond", serif';
+  ctx.fillStyle = '#3E1F00';
+  ctx.textAlign = 'center';
+  msgY = wrapTextReturn(ctx, fullMsg, SIZE/2, msgY, SIZE - 170, 40);
+
+  // ── Happy Mother's Day ──
+  msgY += 24;
+  ctx.font = 'bold 38px "Cormorant Garamond", serif';
+  ctx.fillStyle = '#C8501A';
+  ctx.textAlign = 'center';
+  ctx.fillText("Happy Mother's Day, Maa. 🙏", SIZE/2, msgY);
+
+  // ── Divider + from line ──
+  drawGoldLine(ctx, SIZE, msgY + 28);
+
+  ctx.font = 'italic 27px "Cormorant Garamond", serif';
+  ctx.fillStyle = '#9b7b5a';
+  ctx.textAlign = 'right';
+  ctx.fillText(`— ${state.name}, from ${state.city}`, SIZE - 80, msgY + 58);
+
+  // ── Bottom decorative dots row ──
+  drawFloralBorder(ctx, SIZE, SIZE - 130, SIZE - 80);
+
+  // ── Bottom labels ──
+  ctx.font = '20px "Lato", sans-serif';
+  ctx.fillStyle = '#b09070';
+  ctx.textAlign = 'left';
+  ctx.fillText(CONFIG.eventName, 62, SIZE - 48);
+  ctx.textAlign = 'right';
+  ctx.fillText('Mangaldeep', SIZE - 62, SIZE - 48);
+}
+
+function drawFloral(ctx, x, y, rotation) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rotation * Math.PI / 180);
+  const petals = 5;
+  for (let i = 0; i < petals; i++) {
+    ctx.save();
+    ctx.rotate((i * 2 * Math.PI) / petals);
+    ctx.beginPath();
+    ctx.ellipse(0, -14, 5, 12, 0, 0, Math.PI*2);
+    ctx.fillStyle = i % 2 === 0 ? '#F2C4CE' : '#D4A843';
+    ctx.globalAlpha = 0.55;
+    ctx.fill();
+    ctx.restore();
+  }
+  ctx.beginPath();
+  ctx.arc(0, 0, 6, 0, Math.PI*2);
+  ctx.fillStyle = '#C8501A';
+  ctx.globalAlpha = 0.7;
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawFloralBorder(ctx, canvasWidth, yStart, yEnd) {
+  const spacing = 80;
+  const count = Math.floor(canvasWidth / spacing);
+  for (let i = 0; i < count; i++) {
+    const x = (i + 0.5) * spacing;
+    const y = (yStart + yEnd) / 2;
+    ctx.save();
+    ctx.globalAlpha = 0.3;
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI*2);
+    ctx.fillStyle = '#D4A843';
+    ctx.fill();
+    ctx.restore();
+
+    if (i % 3 === 0) {
+      ctx.save();
+      ctx.globalAlpha = 0.2;
+      ctx.font = '24px serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#C8501A';
+      ctx.fillText('✿', x, y + 8);
+      ctx.restore();
+    }
+  }
+}
+
+function drawGoldLine(ctx, canvasWidth, y) {
+  const grad = ctx.createLinearGradient(80, y, canvasWidth - 80, y);
+  grad.addColorStop(0, 'transparent');
+  grad.addColorStop(0.3, '#D4A843');
+  grad.addColorStop(0.7, '#D4A843');
+  grad.addColorStop(1, 'transparent');
+  ctx.beginPath();
+  ctx.moveTo(80, y);
+  ctx.lineTo(canvasWidth - 80, y);
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+}
+
+function getWrappedLines(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+      lines.push(line.trim());
+      line = words[n] + ' ';
+    } else {
+      line = testLine;
+    }
+  }
+  if (line.trim()) lines.push(line.trim());
+  return lines;
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
+
+function wrapTextReturn(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+  return y + lineHeight;
+}
+
+/* =====================================================
+   SAVE IMAGE
+   ===================================================== */
+function saveImage() {
+  const canvas = document.getElementById('shareCanvas');
+  const link = document.createElement('a');
+  link.download = `For-${state.maaName.replace(/\s+/g,'-')}-Mangaldeep.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+/* =====================================================
+   SHARE ON WHATSAPP
+   ===================================================== */
+function shareWhatsApp() {
+  logSubmission();
+  incrementCounter();
+
+  const msg = encodeURIComponent(
+    `Maa, I dedicated a fragrance to you this Mother's Day 🌸 I'm sending you something — please open it when you see it 🙏 — ${state.name}`
+  );
+  window.open(`https://wa.me/?text=${msg}`, '_blank');
+
+  // Populate and show screen 8
+  document.getElementById('thankYouLine').textContent =
+    `${state.name}, you just made ${state.maaName}'s day a little more divine 🌸`;
+
+  // Render logo on screen 8
+  const wrap = document.getElementById('thankYouLogoWrap');
+  if (wrap) {
+    const url = CONFIG.mangaldeepLogoURL;
+    wrap.innerHTML = url
+      ? `<img src="${url}" class="mangaldeep-logo-img" alt="Mangaldeep" onerror="this.outerHTML='<span class=\\'mangaldeep-logo-fallback\\'>🪔</span>'">`
+      : `<span class="mangaldeep-logo-fallback">🪔</span>`;
+  }
+
+  setTimeout(() => goTo(8), 300);
+}
+
+/* =====================================================
+   SCREEN 6 — FEEDBACK BEFORE CARD
+   ===================================================== */
+function submitFeedbackAndContinue() {
+  const feedback = document.getElementById('openFeedback').value.trim();
+  if (feedback && CONFIG.googleScriptURL) {
+    fetch(CONFIG.googleScriptURL, {
+      method: 'POST',
+      body: JSON.stringify({
+        type: 'openFeedback',
+        name: state.name,
+        maa_name: state.maaName,
+        open_feedback: feedback,
+        source: state.source,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(() => {});
+  }
+  goTo(7);
+}
+
+/* =====================================================
+   DATA LOGGING
+   ===================================================== */
+function logSubmission() {
+  if (!CONFIG.googleScriptURL) return;
+  fetch(CONFIG.googleScriptURL, {
+    method: 'POST',
+    body: JSON.stringify({
+      type: 'submission',
+      name: state.name,
+      maa_name: state.maaName,
+      city: state.city,
+      age_bracket: state.age,
+      qualities_selected: state.selectedQualities,
+      fragrance_matched: state.fragranceId,
+      feedback_answer: state.feedbackIndex !== null ? FEEDBACK_LINES[state.feedbackIndex] : '',
+      source: state.source,
+      timestamp: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
+function incrementCounter() {
+  if (!CONFIG.googleScriptURL) return;
+  fetch(CONFIG.googleScriptURL + '?action=increment').catch(() => {});
+}
+</script>
+</body>
+</html>
