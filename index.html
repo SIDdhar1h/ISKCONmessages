@@ -1020,6 +1020,7 @@ let state = {
   selectedQualities: [],
   fragranceId: null,
   feedbackIndex: null,
+  openFeedback: "",
   source: ""
 };
 
@@ -1518,20 +1519,7 @@ function shareWhatsApp() {
    SCREEN 6 — FEEDBACK BEFORE CARD
    ===================================================== */
 function submitFeedbackAndContinue() {
-  const feedback = document.getElementById('openFeedback').value.trim();
-  if (feedback && CONFIG.googleScriptURL) {
-    fetch(CONFIG.googleScriptURL, {
-      method: 'POST',
-      body: JSON.stringify({
-        type: 'openFeedback',
-        name: state.name,
-        maa_name: state.maaName,
-        open_feedback: feedback,
-        source: state.source,
-        timestamp: new Date().toISOString()
-      })
-    }).catch(() => {});
-  }
+  state.openFeedback = document.getElementById('openFeedback').value.trim();
   goTo(7);
 }
 
@@ -1548,9 +1536,10 @@ function logSubmission() {
       maa_name: state.maaName,
       city: state.city,
       age_bracket: state.age,
-      qualities_selected: state.selectedQualities,
+      qualities_selected: state.selectedQualities.join(', '),
       fragrance_matched: state.fragranceId,
       feedback_answer: state.feedbackIndex !== null ? FEEDBACK_LINES[state.feedbackIndex] : '',
+      open_feedback: state.openFeedback || '',
       source: state.source,
       timestamp: new Date().toISOString()
     })
