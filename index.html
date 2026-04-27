@@ -348,10 +348,9 @@ body {
 
 #screen4 .screen-inner {
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   text-align: center;
   padding-top: 50px;
-  min-height: calc(100vh - 6px);
 }
 
 .diya-wrap {
@@ -637,40 +636,6 @@ body {
 }
 .dot.active { background: var(--saffron); }
 .dot.done { background: var(--gold); }
-
-/* Back button */
-.btn-back {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-family: 'Lato', sans-serif;
-  font-size: 0.88rem;
-  cursor: pointer;
-  padding: 4px 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.2s;
-  align-self: flex-start;
-}
-.btn-back:hover { color: var(--saffron); }
-
-/* Mangaldeep logo image */
-.mangaldeep-logo-img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 12px;
-  animation: floatDiya 3s ease-in-out infinite;
-}
-.mangaldeep-logo-fallback {
-  font-size: 3.5rem;
-  display: block;
-  margin-bottom: 12px;
-  text-align: center;
-  animation: floatDiya 3s ease-in-out infinite;
-}
 </style>
 </head>
 <body>
@@ -695,7 +660,7 @@ body {
         </g>
       </svg>
 
-      <div id="landingLogoWrap"></div>
+      <span class="landing-diya">🪔</span>
       <h1 class="landing-title">Dedicate a Fragrance<br>to your Maa 🌸</h1>
       <p class="landing-subtitle">This Mother's Day, tell her<br>what she means to you</p>
 
@@ -715,7 +680,6 @@ body {
 <div id="screen2" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
-    <button class="btn-back" onclick="goTo(1)">← Back</button>
     <div class="progress-dots" id="dots2">
       <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
@@ -761,7 +725,6 @@ body {
 <div id="screen3" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
-    <button class="btn-back" onclick="goTo(2)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
@@ -779,15 +742,42 @@ body {
 <div id="screen4" class="screen">
   <div class="top-bar" style="background: linear-gradient(90deg, #4a1800, var(--gold), #4a1800);"></div>
   <div class="screen-inner">
-    <button class="btn-back" onclick="goTo(3)" style="color:#c8a97e">← Back</button>
-    <div class="diya-wrap" id="revealLogoWrap"></div>
+    <div class="diya-wrap">
+      <svg class="diya-svg" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flame -->
+        <g class="flame">
+          <ellipse cx="40" cy="22" rx="8" ry="14" fill="url(#flameGrad)" opacity="0.9"/>
+          <ellipse cx="40" cy="26" rx="5" ry="9" fill="#fff7c0" opacity="0.7"/>
+        </g>
+        <defs>
+          <radialGradient id="flameGrad" cx="50%" cy="60%" r="50%">
+            <stop offset="0%" stop-color="#fffbe0"/>
+            <stop offset="40%" stop-color="#ffb020"/>
+            <stop offset="100%" stop-color="#c8501a" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffb020" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#ffb020" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Glow -->
+        <ellipse cx="40" cy="30" rx="20" ry="20" fill="url(#glowGrad)"/>
+        <!-- Diya body -->
+        <path d="M15 60 Q10 80 40 85 Q70 80 65 60 Q55 52 40 50 Q25 52 15 60Z" fill="#c8501a"/>
+        <path d="M15 60 Q10 76 40 80 Q70 76 65 60 Q55 54 40 52 Q25 54 15 60Z" fill="#e07030"/>
+        <!-- Oil glow -->
+        <ellipse cx="40" cy="62" rx="12" ry="5" fill="#ffcc44" opacity="0.4"/>
+        <!-- Wick -->
+        <line x1="40" y1="55" x2="40" y2="37" stroke="#6b3a00" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Diya stand -->
+        <rect x="32" y="82" width="16" height="5" rx="2" fill="#8b4000" opacity="0.6"/>
+      </svg>
+    </div>
 
     <p class="reveal-maa-name" id="revealMaaLine"></p>
     <div class="gold-divider"></div>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px 0;">
-      <h2 class="reveal-fragrance-name" id="revealFragName" style="margin-bottom:14px"></h2>
-      <p class="reveal-tagline" id="revealTagline" style="margin-bottom:0"></p>
-    </div>
+    <h2 class="reveal-fragrance-name" id="revealFragName"></h2>
+    <p class="reveal-tagline" id="revealTagline"></p>
     <div class="gold-divider"></div>
     <p class="reveal-line" id="revealLine"></p>
 
@@ -801,7 +791,6 @@ body {
 <div id="screen5" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
-    <button class="btn-back" onclick="goTo(4)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
     </div>
@@ -828,17 +817,15 @@ body {
     </div>
 
     <button class="btn-primary" id="btnFeedback" onclick="goTo(6)" disabled>Make her card — it takes 10 seconds ✨</button>
-
   </div>
 </div>
 
 <!-- ===========================
-     SCREEN 6 — FEEDBACK (before card)
+     SCREEN 6 — FEEDBACK (moved before card)
      =========================== -->
 <div id="screen6" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
-    <button class="btn-back" onclick="goTo(5)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div>
     </div>
@@ -851,7 +838,7 @@ body {
     </div>
 
     <button class="btn-primary" onclick="submitFeedbackAndContinue()">Show me her card ✨</button>
-    <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--muted);font-style:italic">(skip if everything was absolutely perfect 🙏)</p>
+    <button class="btn-skip" style="margin-top:10px;display:block;width:100%;text-align:center" onclick="goTo(7)">Skip → show the card</button>
   </div>
 </div>
 
@@ -861,7 +848,6 @@ body {
 <div id="screen7" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
-    <button class="btn-back" onclick="goTo(6)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div>
     </div>
@@ -875,6 +861,7 @@ body {
     <!-- Mangaldeep branding -->
     <div class="mangaldeep-brand">
       <svg viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" class="mangaldeep-svg">
+        <!-- Diya icon -->
         <g transform="translate(0,2)">
           <ellipse cx="18" cy="30" rx="10" ry="4" fill="#C8501A" opacity="0.9"/>
           <ellipse cx="18" cy="29" rx="8" ry="3" fill="#e07030"/>
@@ -890,6 +877,7 @@ body {
             </radialGradient>
           </defs>
         </g>
+        <!-- Mangaldeep wordmark -->
         <text x="34" y="22" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="#C8501A">Mangaldeep</text>
         <text x="34" y="34" font-family="Lato, sans-serif" font-size="9" fill="#9b7b5a" letter-spacing="1.5">AGARBATTI</text>
       </svg>
@@ -898,31 +886,8 @@ body {
     <p class="share-nudge">💚 Send it to her directly on WhatsApp — she'll love it</p>
     <button class="btn-whatsapp-big" onclick="shareWhatsApp()">Send to Maa on WhatsApp 💚</button>
     <button class="btn-save-small" onclick="saveImage()">Save to my phone first 📸</button>
-  </div>
-</div>
 
-<!-- ===========================
-     SCREEN 8 — THANK YOU (after WhatsApp share)
-     =========================== -->
-<div id="screen8" class="screen">
-  <div class="top-bar"></div>
-  <div class="screen-inner" style="align-items:center;justify-content:center;text-align:center">
-    <div id="thankYouLogoWrap" style="margin-bottom:18px"></div>
-
-    <h2 class="screen-title" style="font-size:2.1rem">Your dedication has been lit 🪔</h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--muted);font-style:italic;line-height:1.7;margin:10px 0 28px" id="thankYouLine"></p>
-
-    <div class="gold-divider" style="margin:0 auto 28px"></div>
-
-    <p style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--deep-brown);line-height:1.75;padding:0 8px">
-      Every agarbatti you've ever lit for her —<br>
-      she felt it. Even before you knew<br>
-      you were praying.
-    </p>
-
-    <div class="gold-divider" style="margin:28px auto"></div>
-
-    <p style="font-size:0.82rem;color:var(--muted);font-style:italic">Made with love by Mangaldeep 🌸</p>
+    <p class="closing-line" id="closingLine" style="display:none">Your dedication has been lit 🪔<br><span style="font-size:0.85rem;font-style:normal;color:var(--muted)" id="thankyouMsg"></span></p>
   </div>
 </div>
 
@@ -936,8 +901,7 @@ const CONFIG = {
   relationship: "Maa",
   hashtag: "#DedicateToMaa",
   seedCount: 47,
-  googleScriptURL: "https://script.google.com/macros/s/AKfycbwraPE83M3MlzU14HHpNLw-_QmZJT31zbSRlmcmvI9soeHlN_tGuehu0xl3MBz2Y6GB/exec",
-  mangaldeepLogoURL: "https://centraexports.com/wp-content/uploads/2025/10/logo.jpeg"
+  googleScriptURL: "" // 🔧 Paste your Google Apps Script URL here
 };
 
 /* =====================================================
@@ -1020,7 +984,6 @@ let state = {
   selectedQualities: [],
   fragranceId: null,
   feedbackIndex: null,
-  openFeedback: "",
   source: ""
 };
 
@@ -1032,9 +995,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   state.source = params.get('ref') || 'direct';
 
-  // Render Mangaldeep logos (or fallback emoji)
-  renderLogos();
-
   // Fetch live count
   fetchCount();
 
@@ -1042,37 +1002,23 @@ window.addEventListener('DOMContentLoaded', () => {
   buildQualityGrid();
 });
 
-function renderLogos() {
-  const url = CONFIG.mangaldeepLogoURL;
-
-  // Landing screen logo
-  const landingWrap = document.getElementById('landingLogoWrap');
-  if (landingWrap) {
-    if (url) {
-      landingWrap.innerHTML = `<img src="${url}" class="mangaldeep-logo-img" alt="Mangaldeep" onerror="this.outerHTML='<span class=\\'mangaldeep-logo-fallback\\'>🪔</span>'">`;
-    } else {
-      landingWrap.innerHTML = `<span class="mangaldeep-logo-fallback">🪔</span>`;
-    }
-  }
-
-  // Reveal screen logo
-  const revealWrap = document.getElementById('revealLogoWrap');
-  if (revealWrap) {
-    if (url) {
-      revealWrap.innerHTML = `<img src="${url}" class="mangaldeep-logo-img" alt="Mangaldeep" style="filter:brightness(1.1)" onerror="this.outerHTML='<span class=\\'mangaldeep-logo-fallback\\'>🪔</span>'">`;
-    } else {
-      revealWrap.innerHTML = `<span class="mangaldeep-logo-fallback">🪔</span>`;
-    }
-  }
-}
-
 function fetchCount() {
   const el = document.getElementById('liveCount');
+  if (!el) return;
   if (!CONFIG.googleScriptURL) { el.textContent = CONFIG.seedCount; return; }
-  fetch(CONFIG.googleScriptURL + '?action=getCount')
-    .then(r => r.json())
-    .then(d => { el.textContent = (d.count || 0) + CONFIG.seedCount; })
-    .catch(() => { el.textContent = CONFIG.seedCount; });
+
+  // JSONP — injects a <script> tag so CORS is bypassed entirely
+  const cbName = '_mdCount_' + Date.now();
+  window[cbName] = function(data) {
+    el.textContent = (data.count || 0) + CONFIG.seedCount;
+    delete window[cbName];
+    document.getElementById('_jsonpScript')?.remove();
+  };
+  const s = document.createElement('script');
+  s.id = '_jsonpScript';
+  s.src = CONFIG.googleScriptURL + '?action=getCount&callback=' + cbName;
+  s.onerror = () => { el.textContent = CONFIG.seedCount; delete window[cbName]; };
+  document.body.appendChild(s);
 }
 
 function buildQualityGrid() {
@@ -1499,27 +1445,31 @@ function shareWhatsApp() {
   );
   window.open(`https://wa.me/?text=${msg}`, '_blank');
 
-  // Populate and show screen 8
-  document.getElementById('thankYouLine').textContent =
-    `${state.name}, you just made ${state.maaName}'s day a little more divine 🌸`;
-
-  // Render logo on screen 8
-  const wrap = document.getElementById('thankYouLogoWrap');
-  if (wrap) {
-    const url = CONFIG.mangaldeepLogoURL;
-    wrap.innerHTML = url
-      ? `<img src="${url}" class="mangaldeep-logo-img" alt="Mangaldeep" onerror="this.outerHTML='<span class=\\'mangaldeep-logo-fallback\\'>🪔</span>'">`
-      : `<span class="mangaldeep-logo-fallback">🪔</span>`;
-  }
-
-  setTimeout(() => goTo(8), 300);
+  // Show closing line in place — user stays on this screen
+  const closing = document.getElementById('closingLine');
+  const thankyouMsg = document.getElementById('thankyouMsg');
+  if (thankyouMsg) thankyouMsg.textContent = `${state.name}, you just made ${state.maaName}'s day a little more divine 🌸`;
+  if (closing) closing.style.display = 'block';
 }
 
 /* =====================================================
    SCREEN 6 — FEEDBACK BEFORE CARD
    ===================================================== */
 function submitFeedbackAndContinue() {
-  state.openFeedback = document.getElementById('openFeedback').value.trim();
+  const feedback = document.getElementById('openFeedback').value.trim();
+  if (feedback && CONFIG.googleScriptURL) {
+    fetch(CONFIG.googleScriptURL, {
+      method: 'POST',
+      body: JSON.stringify({
+        type: 'openFeedback',
+        name: state.name,
+        maa_name: state.maaName,
+        open_feedback: feedback,
+        source: state.source,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(() => {});
+  }
   goTo(7);
 }
 
@@ -1530,8 +1480,8 @@ function logSubmission() {
   if (!CONFIG.googleScriptURL) return;
   fetch(CONFIG.googleScriptURL, {
     method: 'POST',
+    mode: 'no-cors',
     body: JSON.stringify({
-      type: 'submission',
       name: state.name,
       maa_name: state.maaName,
       city: state.city,
@@ -1547,8 +1497,11 @@ function logSubmission() {
 }
 
 function incrementCounter() {
-  if (!CONFIG.googleScriptURL) return;
-  fetch(CONFIG.googleScriptURL + '?action=increment').catch(() => {});
+  // Bump UI immediately so user sees it change
+  const el = document.getElementById('liveCount');
+  if (el) el.textContent = parseInt(el.textContent || CONFIG.seedCount) + 1;
+  // Then re-fetch real number from sheet after a short delay
+  setTimeout(fetchCount, 3000);
 }
 </script>
 </body>
