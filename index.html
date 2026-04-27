@@ -620,6 +620,27 @@ body {
   padding: 18px 0;
 }
 
+/* Back button */
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 4px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+.btn-back:hover { color: var(--saffron); }
+.btn-back-dark {
+  color: #c8a97e;
+}
+.btn-back-dark:hover { color: var(--gold-light); }
+
 /* Progress dots */
 .progress-dots {
   display: flex;
@@ -680,6 +701,7 @@ body {
 <div id="screen2" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(1)">← Back</button>
     <div class="progress-dots" id="dots2">
       <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
@@ -725,6 +747,7 @@ body {
 <div id="screen3" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(2)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
@@ -742,6 +765,7 @@ body {
 <div id="screen4" class="screen">
   <div class="top-bar" style="background: linear-gradient(90deg, #4a1800, var(--gold), #4a1800);"></div>
   <div class="screen-inner">
+    <button class="btn-back btn-back-dark" onclick="goTo(3)">← Back</button>
     <div class="diya-wrap">
       <svg class="diya-svg" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
         <!-- Flame -->
@@ -791,6 +815,7 @@ body {
 <div id="screen5" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(4)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
     </div>
@@ -826,6 +851,7 @@ body {
 <div id="screen6" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(5)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div>
     </div>
@@ -838,7 +864,7 @@ body {
     </div>
 
     <button class="btn-primary" onclick="submitFeedbackAndContinue()">Show me her card ✨</button>
-    <button class="btn-skip" style="margin-top:10px;display:block;width:100%;text-align:center" onclick="goTo(7)">Skip → show the card</button>
+    <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--muted);font-style:italic;pointer-events:none;user-select:none">(skip if everything was absolutely perfect 🙏)</p>
   </div>
 </div>
 
@@ -848,6 +874,7 @@ body {
 <div id="screen7" class="screen">
   <div class="top-bar"></div>
   <div class="screen-inner">
+    <button class="btn-back" onclick="goTo(6)">← Back</button>
     <div class="progress-dots">
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div>
     </div>
@@ -858,36 +885,16 @@ body {
       <canvas id="shareCanvas"></canvas>
     </div>
 
-    <!-- Mangaldeep branding -->
     <div class="mangaldeep-brand">
-      <svg viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" class="mangaldeep-svg">
-        <!-- Diya icon -->
-        <g transform="translate(0,2)">
-          <ellipse cx="18" cy="30" rx="10" ry="4" fill="#C8501A" opacity="0.9"/>
-          <ellipse cx="18" cy="29" rx="8" ry="3" fill="#e07030"/>
-          <ellipse cx="18" cy="28" rx="4" ry="2" fill="#ffcc44" opacity="0.6"/>
-          <line x1="18" y1="26" x2="18" y2="18" stroke="#6b3a00" stroke-width="1" stroke-linecap="round"/>
-          <ellipse cx="18" cy="14" rx="4" ry="6" fill="url(#fl2)" opacity="0.9"/>
-          <ellipse cx="18" cy="16" rx="2.5" ry="4" fill="#fff7c0" opacity="0.7"/>
-          <defs>
-            <radialGradient id="fl2" cx="50%" cy="60%" r="50%">
-              <stop offset="0%" stop-color="#fffbe0"/>
-              <stop offset="50%" stop-color="#ffb020"/>
-              <stop offset="100%" stop-color="#c8501a" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-        </g>
-        <!-- Mangaldeep wordmark -->
-        <text x="34" y="22" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="#C8501A">Mangaldeep</text>
-        <text x="34" y="34" font-family="Lato, sans-serif" font-size="9" fill="#9b7b5a" letter-spacing="1.5">AGARBATTI</text>
-      </svg>
+      <img src="https://centraexports.com/wp-content/uploads/2025/10/logo.jpeg"
+           alt="Mangaldeep"
+           style="height:48px;width:auto;display:block;margin:0 auto;object-fit:contain"
+           onerror="this.style.display='none'">
     </div>
 
     <p class="share-nudge">💚 Send it to her directly on WhatsApp — she'll love it</p>
     <button class="btn-whatsapp-big" onclick="shareWhatsApp()">Send to Maa on WhatsApp 💚</button>
     <button class="btn-save-small" onclick="saveImage()">Save to my phone first 📸</button>
-
-    <p class="closing-line" id="closingLine" style="display:none">Your dedication has been lit 🪔<br><span style="font-size:0.85rem;font-style:normal;color:var(--muted)" id="thankyouMsg"></span></p>
   </div>
 </div>
 
@@ -901,7 +908,8 @@ const CONFIG = {
   relationship: "Maa",
   hashtag: "#DedicateToMaa",
   seedCount: 47,
-  googleScriptURL: "" // 🔧 Paste your Google Apps Script URL here
+  googleScriptURL: "https://script.google.com/macros/s/AKfycbwraPE83M3MlzU14HHpNLw-_QmZJT31zbSRlmcmvI9soeHlN_tGuehu0xl3MBz2Y6GB/exec",
+  mangaldeepLogoURL: "https://centraexports.com/wp-content/uploads/2025/10/logo.jpeg"
 };
 
 /* =====================================================
@@ -1226,85 +1234,109 @@ function drawCanvas() {
   drawGoldLine(ctx, SIZE, 210);
 
   // ════════════════════════════════════════
-  // ZONE 2: Fragrance name + tagline — CENTERED in zone 215..430
+  // ZONE 2: Fragrance name + tagline — measure first, center, then draw
   // ════════════════════════════════════════
-  const ZONE2_TOP = 215;
-  const ZONE2_BOT = 430;
+  const FRAG_LINE_H = 90;
+  const TAG_LINE_H  = 46;
+  const GAP_FT = 28; // gap between frag name and tagline
 
-  // Measure fragrance name (may wrap)
-  ctx.font = 'bold 72px "Cormorant Garamond", serif';
-  const fragLabel = `You are ${frag.name} —`;
-  const fragLines = getWrappedLines(ctx, fragLabel, SIZE - 160);
-  const FRAG_LINE_H = 84;
+  // Measure both blocks
+  ctx.font = 'bold 68px "Cormorant Garamond", serif';
+  const fragLines = getWrappedLines(ctx, `You are ${frag.name} —`, SIZE - 160);
+  ctx.font = 'italic 32px "Cormorant Garamond", serif';
+  const tagLines  = getWrappedLines(ctx, frag.tagline, SIZE - 180);
+
   const fragBlockH = fragLines.length * FRAG_LINE_H;
+  const tagBlockH  = tagLines.length  * TAG_LINE_H;
+  const totalZone2H = fragBlockH + GAP_FT + tagBlockH;
 
-  // Measure tagline (may wrap)
-  ctx.font = 'italic 34px "Cormorant Garamond", serif';
-  const tagLines = getWrappedLines(ctx, frag.tagline, SIZE - 160);
-  const TAG_LINE_H = 46;
-  const tagBlockH = tagLines.length * TAG_LINE_H;
+  // Fix the zone between the two gold lines
+  const ZONE2_TOP = 210;
+  const INNER_PAD = 40; // breathing room above and below content
+  const ZONE2_BOT = ZONE2_TOP + INNER_PAD + totalZone2H + INNER_PAD;
 
-  const GAP_FRAG_TAG = 18;
-  const totalHeaderH = fragBlockH + GAP_FRAG_TAG + tagBlockH;
+  // Draw bottom gold line now that we know where it lands
+  drawGoldLine(ctx, SIZE, ZONE2_BOT);
 
-  // Vertically center within zone
-  const zoneH = ZONE2_BOT - ZONE2_TOP;
-  const headerOffset = Math.round((zoneH - totalHeaderH) / 2);
-  let hY = ZONE2_TOP + Math.max(0, headerOffset) + FRAG_LINE_H - 8; // baseline of first line
+  // Now draw text — centered inside the zone
+  const contentStartY = ZONE2_TOP + INNER_PAD;
 
-  // Draw fragrance name
-  ctx.font = 'bold 72px "Cormorant Garamond", serif';
+  // Fragrance name — baseline of first line
+  let drawY = contentStartY + FRAG_LINE_H - 16; // -16 accounts for descender space
+  ctx.font = 'bold 68px "Cormorant Garamond", serif';
   ctx.fillStyle = '#C8501A';
   ctx.textAlign = 'center';
   fragLines.forEach((line, i) => {
-    ctx.fillText(line, SIZE/2, hY + i * FRAG_LINE_H);
+    ctx.fillText(line, SIZE/2, drawY + i * FRAG_LINE_H);
   });
 
-  // Draw tagline
-  ctx.font = 'italic 34px "Cormorant Garamond", serif';
+  // Tagline
+  drawY += fragBlockH + GAP_FT;
+  ctx.font = 'italic 32px "Cormorant Garamond", serif';
   ctx.fillStyle = '#6b3a00';
-  ctx.textAlign = 'center';
-  const tagY = hY + fragBlockH + GAP_FRAG_TAG;
   tagLines.forEach((line, i) => {
-    ctx.fillText(line, SIZE/2, tagY + i * TAG_LINE_H);
+    ctx.fillText(line, SIZE/2, drawY + i * TAG_LINE_H);
   });
 
-  drawGoldLine(ctx, SIZE, ZONE2_BOT + 10);
+  // Message starts after zone 2
+  let curY = ZONE2_BOT + 44;
 
   // ════════════════════════════════════════
-  // ZONE 3: Long message  y=460..820
+  // ZONE 3: Message — starts at curY
   // ════════════════════════════════════════
-  let msgY = 480;
-  ctx.font = '27px "Cormorant Garamond", serif';
+  const BOTTOM_RESERVE = 190;
+  const MSG_MAX_Y = SIZE - BOTTOM_RESERVE;
+  const MSG_LINE_H = 38;
+
+  ctx.font = '26px "Cormorant Garamond", serif';
   ctx.fillStyle = '#3E1F00';
   ctx.textAlign = 'center';
-  msgY = wrapTextReturn(ctx, fullMsg, SIZE/2, msgY, SIZE - 170, 40);
+
+  const msgWords = fullMsg.split(' ');
+  let msgLine = '';
+  let msgY = curY;
+  const maxMsgW = SIZE - 170;
+
+  for (let n = 0; n < msgWords.length; n++) {
+    const test = msgLine + msgWords[n] + ' ';
+    if (ctx.measureText(test).width > maxMsgW && n > 0) {
+      if (msgY > MSG_MAX_Y) break;
+      ctx.fillText(msgLine.trim(), SIZE/2, msgY);
+      msgLine = msgWords[n] + ' ';
+      msgY += MSG_LINE_H;
+    } else {
+      msgLine = test;
+    }
+  }
+  if (msgLine.trim() && msgY <= MSG_MAX_Y) {
+    ctx.fillText(msgLine.trim(), SIZE/2, msgY);
+    msgY += MSG_LINE_H;
+  }
 
   // ── Happy Mother's Day ──
-  msgY += 24;
-  ctx.font = 'bold 38px "Cormorant Garamond", serif';
+  msgY += 18;
+  ctx.font = 'bold 36px "Cormorant Garamond", serif';
   ctx.fillStyle = '#C8501A';
   ctx.textAlign = 'center';
   ctx.fillText("Happy Mother's Day, Maa. 🙏", SIZE/2, msgY);
 
   // ── Divider + from line ──
-  drawGoldLine(ctx, SIZE, msgY + 28);
-
-  ctx.font = 'italic 27px "Cormorant Garamond", serif';
+  drawGoldLine(ctx, SIZE, msgY + 26);
+  ctx.font = 'italic 26px "Cormorant Garamond", serif';
   ctx.fillStyle = '#9b7b5a';
   ctx.textAlign = 'right';
-  ctx.fillText(`— ${state.name}, from ${state.city}`, SIZE - 80, msgY + 58);
+  ctx.fillText(`— ${state.name}, from ${state.city}`, SIZE - 80, msgY + 56);
 
   // ── Bottom decorative dots row ──
-  drawFloralBorder(ctx, SIZE, SIZE - 130, SIZE - 80);
+  drawFloralBorder(ctx, SIZE, SIZE - 120, SIZE - 80);
 
   // ── Bottom labels ──
-  ctx.font = '20px "Lato", sans-serif';
+  ctx.font = '19px "Lato", sans-serif';
   ctx.fillStyle = '#b09070';
   ctx.textAlign = 'left';
-  ctx.fillText(CONFIG.eventName, 62, SIZE - 48);
+  ctx.fillText(CONFIG.eventName, 62, SIZE - 44);
   ctx.textAlign = 'right';
-  ctx.fillText('Mangaldeep', SIZE - 62, SIZE - 48);
+  ctx.fillText('Mangaldeep', SIZE - 62, SIZE - 44);
 }
 
 function drawFloral(ctx, x, y, rotation) {
@@ -1456,20 +1488,7 @@ function shareWhatsApp() {
    SCREEN 6 — FEEDBACK BEFORE CARD
    ===================================================== */
 function submitFeedbackAndContinue() {
-  const feedback = document.getElementById('openFeedback').value.trim();
-  if (feedback && CONFIG.googleScriptURL) {
-    fetch(CONFIG.googleScriptURL, {
-      method: 'POST',
-      body: JSON.stringify({
-        type: 'openFeedback',
-        name: state.name,
-        maa_name: state.maaName,
-        open_feedback: feedback,
-        source: state.source,
-        timestamp: new Date().toISOString()
-      })
-    }).catch(() => {});
-  }
+  state.openFeedback = document.getElementById('openFeedback').value.trim().replace(/[\r\n]+/g, ' ');
   goTo(7);
 }
 
