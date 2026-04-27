@@ -1013,20 +1013,16 @@ window.addEventListener('DOMContentLoaded', () => {
 function fetchCount() {
   const el = document.getElementById('liveCount');
   if (!el) return;
-  if (!CONFIG.googleScriptURL) { el.textContent = CONFIG.seedCount; return; }
-
-  // JSONP — injects a <script> tag so CORS is bypassed entirely
-  const cbName = '_mdCount_' + Date.now();
-  window[cbName] = function(data) {
-    el.textContent = (data.count || 0) + CONFIG.seedCount;
-    delete window[cbName];
-    document.getElementById('_jsonpScript')?.remove();
-  };
-  const s = document.createElement('script');
-  s.id = '_jsonpScript';
-  s.src = CONFIG.googleScriptURL + '?action=getCount&callback=' + cbName;
-  s.onerror = () => { el.textContent = CONFIG.seedCount; delete window[cbName]; };
-  document.body.appendChild(s);
+  // Read M1 directly from the public sheet as CSV — no auth, no CORS
+  const sheetId = '1Garued2kgO7_XBimVZbUZkyDo2LaXSbClGngEnNxnR4';
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&range=M1`;
+  fetch(url)
+    .then(r => r.text())
+    .then(text => {
+      const count = parseInt(text.replace(/"/g, '').trim()) || 0;
+      el.textContent = count + CONFIG.seedCount;
+    })
+    .catch(() => { el.textContent = CONFIG.seedCount; });
 }
 
 function buildQualityGrid() {
