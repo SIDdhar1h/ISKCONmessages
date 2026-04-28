@@ -462,9 +462,40 @@ body {
 .feedback-card.selected .f-label { color: var(--saffron); font-weight: 600; }
 
 /* ===========================
-   SCREEN 6 — IMAGE CARD
+   SCREEN 6 — OPEN FEEDBACK
    =========================== */
 #screen6 {
+  background: linear-gradient(160deg, #fff7f0, #fdf0e2);
+}
+
+.optional-question {
+  font-size: 0.9rem;
+  color: var(--deep-brown);
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e8d5be;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.93rem;
+  background: #fff;
+  color: var(--deep-brown);
+  resize: none;
+  min-height: 90px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+}
+.form-textarea:focus { border-color: var(--gold); }
+
+/* ===========================
+   SCREEN 7 — IMAGE CARD + SHARE
+   =========================== */
+#screen7 {
   background: linear-gradient(160deg, #fff7f0, #fdf0e2);
 }
 
@@ -482,26 +513,33 @@ body {
   display: block;
 }
 
-
-
-
-
 .mangaldeep-brand {
   text-align: center;
   margin: 10px auto 6px;
 }
-.mangaldeep-svg {
-  width: 160px;
-  height: 40px;
-  display: inline-block;
-}
 
+/* ── SHARE BUTTON AREA ── */
 .share-nudge {
   text-align: center;
   font-size: 0.88rem;
   color: var(--muted);
   margin-bottom: 10px;
   font-style: italic;
+}
+
+.share-step-hint {
+  display: none;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #1aad51;
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding: 10px 16px;
+  background: #f0fff5;
+  border: 1.5px solid #1aad51;
+  border-radius: 12px;
+  line-height: 1.5;
+  animation: fadeIn 0.4s ease forwards;
 }
 
 .btn-whatsapp-big {
@@ -539,87 +577,6 @@ body {
 }
 .btn-save-small:hover { border-color: var(--gold); color: var(--deep-brown); }
 
-/* ===========================
-   SCREEN 6 — FEEDBACK (pre-card)
-   =========================== */
-#screen6 {
-  background: linear-gradient(160deg, #fff7f0, #fdf0e2);
-}
-
-/* ===========================
-   SCREEN 7 — CARD (final)
-   =========================== */
-#screen7 {
-  background: linear-gradient(160deg, #fff7f0, #fdf0e2);
-}
-
-.optional-question {
-  font-size: 0.9rem;
-  color: var(--deep-brown);
-  margin-bottom: 12px;
-  line-height: 1.55;
-}
-
-.form-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid #e8d5be;
-  border-radius: 12px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.93rem;
-  background: #fff;
-  color: var(--deep-brown);
-  resize: none;
-  min-height: 90px;
-  outline: none;
-  transition: border-color 0.2s;
-  margin-bottom: 12px;
-}
-.form-textarea:focus { border-color: var(--gold); }
-
-.optional-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-submit-feedback {
-  flex: 1;
-  padding: 12px;
-  background: linear-gradient(135deg, var(--gold), #b8882a);
-  color: var(--deep-brown);
-  border: none;
-  border-radius: 50px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-skip {
-  flex: 1;
-  padding: 12px;
-  background: transparent;
-  color: var(--muted);
-  border: 1.5px solid #e8d5be;
-  border-radius: 50px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.88rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-skip:hover { border-color: var(--muted); }
-
-.closing-line {
-  text-align: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: var(--saffron);
-  margin-top: 24px;
-  padding: 18px 0;
-}
-
 /* Back button */
 .btn-back {
   background: none;
@@ -636,9 +593,7 @@ body {
   align-self: flex-start;
 }
 .btn-back:hover { color: var(--saffron); }
-.btn-back-dark {
-  color: #c8a97e;
-}
+.btn-back-dark { color: #c8a97e; }
 .btn-back-dark:hover { color: var(--gold-light); }
 
 /* Progress dots */
@@ -657,6 +612,17 @@ body {
 }
 .dot.active { background: var(--saffron); }
 .dot.done { background: var(--gold); }
+
+.closing-line {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--saffron);
+  margin-top: 24px;
+  padding: 18px 0;
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -768,7 +734,6 @@ body {
     <button class="btn-back btn-back-dark" onclick="goTo(3)">← Back</button>
     <div class="diya-wrap">
       <svg class="diya-svg" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
-        <!-- Flame -->
         <g class="flame">
           <ellipse cx="40" cy="22" rx="8" ry="14" fill="url(#flameGrad)" opacity="0.9"/>
           <ellipse cx="40" cy="26" rx="5" ry="9" fill="#fff7c0" opacity="0.7"/>
@@ -784,16 +749,11 @@ body {
             <stop offset="100%" stop-color="#ffb020" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <!-- Glow -->
         <ellipse cx="40" cy="30" rx="20" ry="20" fill="url(#glowGrad)"/>
-        <!-- Diya body -->
         <path d="M15 60 Q10 80 40 85 Q70 80 65 60 Q55 52 40 50 Q25 52 15 60Z" fill="#c8501a"/>
         <path d="M15 60 Q10 76 40 80 Q70 76 65 60 Q55 54 40 52 Q25 54 15 60Z" fill="#e07030"/>
-        <!-- Oil glow -->
         <ellipse cx="40" cy="62" rx="12" ry="5" fill="#ffcc44" opacity="0.4"/>
-        <!-- Wick -->
         <line x1="40" y1="55" x2="40" y2="37" stroke="#6b3a00" stroke-width="1.5" stroke-linecap="round"/>
-        <!-- Diya stand -->
         <rect x="32" y="82" width="16" height="5" rx="2" fill="#8b4000" opacity="0.6"/>
       </svg>
     </div>
@@ -846,7 +806,7 @@ body {
 </div>
 
 <!-- ===========================
-     SCREEN 6 — FEEDBACK (moved before card)
+     SCREEN 6 — OPEN FEEDBACK (before card)
      =========================== -->
 <div id="screen6" class="screen">
   <div class="top-bar"></div>
@@ -864,12 +824,12 @@ body {
     </div>
 
     <button class="btn-primary" onclick="submitFeedbackAndContinue()">Show me her card ✨</button>
-    <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--muted);font-style:italic;pointer-events:none;user-select:none">(skip if everything was absolutely perfect 🙏)</p>
+    <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--muted);font-style:italic">(skip if everything was absolutely perfect 🙏)</p>
   </div>
 </div>
 
 <!-- ===========================
-     SCREEN 7 — IMAGE CARD + SHARE (final screen)
+     SCREEN 7 — IMAGE CARD + SHARE
      =========================== -->
 <div id="screen7" class="screen">
   <div class="top-bar"></div>
@@ -879,7 +839,7 @@ body {
       <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot done"></div>
     </div>
     <h2 class="screen-title">Her card is ready 🌸</h2>
-    <p class="screen-subtitle">Send it to her — she'll love it</p>
+    <p class="screen-subtitle">Save it and send it — she'll love it</p>
 
     <div class="canvas-wrap">
       <canvas id="shareCanvas"></canvas>
@@ -892,15 +852,31 @@ body {
            onerror="this.style.display='none'">
     </div>
 
-    <p class="share-nudge">💚 Send it to her directly on WhatsApp — she'll love it</p>
-    <button class="btn-whatsapp-big" onclick="shareWhatsApp()">Send to Maa on WhatsApp 💚</button>
-    <button class="btn-save-small" onclick="saveImage()">Save to my phone first 📸</button>
+    <!-- ── SHARE FLOW ── -->
+    <p class="share-nudge" id="shareNudge">
+      💚 One tap: saves the card to your phone &amp; opens WhatsApp so you can send it to her
+    </p>
+
+    <button class="btn-whatsapp-big" id="btnWhatsApp" onclick="shareWhatsApp()">
+      📸 Save card &amp; open WhatsApp 💚
+    </button>
+
+    <!-- Shown after first tap to guide attachment -->
+    <div class="share-step-hint" id="shareStep2Hint">
+      ✅ Card saved to your <strong>Downloads folder</strong>!<br>
+      File name: <strong id="savedFileName" style="color:#c8501a;font-family:monospace;font-size:0.82em"></strong><br><br>
+      In WhatsApp → tap the 📎 icon → <strong>Document</strong> (or Files) → Downloads → select the card
+    </div>
+
+    <button class="btn-save-small" onclick="saveImage()">Just save the card 📸</button>
+
+    <p class="closing-line" id="closingLine"></p>
   </div>
 </div>
 
 <script>
 /* =====================================================
-   ✏️  CONFIG — EDIT THIS BLOCK FOR NEW EVENTS
+   CONFIG
    ===================================================== */
 const CONFIG = {
   eventName: "Mangaldeep Mother's Day",
@@ -912,42 +888,32 @@ const CONFIG = {
   mangaldeepLogoURL: "https://centraexports.com/wp-content/uploads/2025/10/logo.jpeg"
 };
 
-/* =====================================================
-   ✏️  FRAGRANCES — Edit name, tagline, lineFull
-   ===================================================== */
 const FRAGRANCES = [
-  { id: "rose",        name: "Rose",                line: "Classic",  lineFull: "Classic Collection",           tagline: "Warm as her embrace, blooming endlessly" },
-  { id: "vetiver",     name: "Sandalwood & Vetiver", line: "Fusion",   lineFull: "Fusion Collection",            tagline: "Rooted like sandalwood, unshakeable like her love" },
-  { id: "mogra",       name: "Mogra",               line: "Classic",  lineFull: "Classic Collection",           tagline: "Her joy filled every room before she even entered" },
+  { id: "rose",        name: "Rose",                line: "Classic",  lineFull: "Classic Collection",              tagline: "Warm as her embrace, blooming endlessly" },
+  { id: "vetiver",     name: "Sandalwood & Vetiver", line: "Fusion",   lineFull: "Fusion Collection",               tagline: "Rooted like sandalwood, unshakeable like her love" },
+  { id: "mogra",       name: "Mogra",               line: "Classic",  lineFull: "Classic Collection",              tagline: "Her joy filled every room before she even entered" },
   { id: "divinity",    name: "Divinity",            line: "Divinity", lineFull: "Divinity — Sandalwood & Saffron", tagline: "Sacred, grounding, eternal — like every prayer she lit for you" },
-  { id: "lavender",    name: "Lavender & Sage",     line: "Fusion",   lineFull: "Fusion Collection",            tagline: "Quiet strength. The kind that never asks for credit" },
-  { id: "jasmine",     name: "Jasmine",             line: "Classic",  lineFull: "Classic Collection",           tagline: "Pure as jasmine, asking nothing, giving everything" },
-  { id: "greenforest", name: "Green Forest",        line: "Nature",   lineFull: "Nature Collection",            tagline: "Ancient like forests, wise like her silence" },
-  { id: "scent",       name: "Scent",               line: "Scent",    lineFull: "Scent Line",                   tagline: "She carried grace in every step, fragrance in every memory" },
-  { id: "chandan",     name: "Classic Chandan",     line: "Classic",  lineFull: "Classic Collection",           tagline: "Steady, timeless, always there — like sandalwood in every prayer" },
-  { id: "flowervalley",name: "Flower Valley",       line: "Nature",   lineFull: "Nature Collection",            tagline: "She made ordinary days feel like festivals" }
+  { id: "lavender",    name: "Lavender & Sage",     line: "Fusion",   lineFull: "Fusion Collection",               tagline: "Quiet strength. The kind that never asks for credit" },
+  { id: "jasmine",     name: "Jasmine",             line: "Classic",  lineFull: "Classic Collection",              tagline: "Pure as jasmine, asking nothing, giving everything" },
+  { id: "greenforest", name: "Green Forest",        line: "Nature",   lineFull: "Nature Collection",               tagline: "Ancient like forests, wise like her silence" },
+  { id: "scent",       name: "Scent",               line: "Scent",    lineFull: "Scent Line",                      tagline: "She carried grace in every step, fragrance in every memory" },
+  { id: "chandan",     name: "Classic Chandan",     line: "Classic",  lineFull: "Classic Collection",              tagline: "Steady, timeless, always there — like sandalwood in every prayer" },
+  { id: "flowervalley",name: "Flower Valley",       line: "Nature",   lineFull: "Nature Collection",               tagline: "She made ordinary days feel like festivals" }
 ];
 
-/* =====================================================
-   ✏️  QUALITIES — Labels and which fragrance they map to
-   ===================================================== */
 const QUALITIES = [
-  { id: "q1",  label: "Warm & Loving",       emoji: "🌸", fragranceId: "rose" },
-  { id: "q2",  label: "Strong & Resilient",  emoji: "🏔️", fragranceId: "vetiver" },
-  { id: "q3",  label: "Joyful & Festive",    emoji: "✨", fragranceId: "mogra" },
-  { id: "q4",  label: "Spiritual & Devoted", emoji: "🕉️", fragranceId: "divinity" },
-  { id: "q5",  label: "Calm & Patient",      emoji: "🍃", fragranceId: "lavender" },
-  { id: "q6",  label: "Pure & Selfless",     emoji: "🌺", fragranceId: "jasmine" },
-  { id: "q7",  label: "Grounded & Wise",     emoji: "🌿", fragranceId: "greenforest" },
-  { id: "q8",  label: "Graceful & Refined",  emoji: "👑", fragranceId: "scent" },
-  { id: "q9",  label: "Protective & Steady", emoji: "🌳", fragranceId: "chandan" },
+  { id: "q1",  label: "Warm & Loving",          emoji: "🌸", fragranceId: "rose" },
+  { id: "q2",  label: "Strong & Resilient",     emoji: "🏔️", fragranceId: "vetiver" },
+  { id: "q3",  label: "Joyful & Festive",       emoji: "✨", fragranceId: "mogra" },
+  { id: "q4",  label: "Spiritual & Devoted",    emoji: "🕉️", fragranceId: "divinity" },
+  { id: "q5",  label: "Calm & Patient",         emoji: "🍃", fragranceId: "lavender" },
+  { id: "q6",  label: "Pure & Selfless",        emoji: "🌺", fragranceId: "jasmine" },
+  { id: "q7",  label: "Grounded & Wise",        emoji: "🌿", fragranceId: "greenforest" },
+  { id: "q8",  label: "Graceful & Refined",     emoji: "👑", fragranceId: "scent" },
+  { id: "q9",  label: "Protective & Steady",    emoji: "🌳", fragranceId: "chandan" },
   { id: "q10", label: "Free-spirited & Joyful", emoji: "🌻", fragranceId: "flowervalley" }
 ];
 
-/* =====================================================
-   ✏️  MESSAGES — Card text per fragrance
-   [feedbackLine] is replaced dynamically
-   ===================================================== */
 const MESSAGES = {
   rose:        { cardText: "You are warmth before the sun rises. The kind of love that doesn't announce itself — it simply surrounds everything. Like rose, you are timeless. You bloomed in every season of our life, never asking for the right weather. Every little thing you did without being asked — we noticed. We always noticed. [feedbackLine] On this Mother's Day, know that your fragrance lives in every corner of our home." },
   vetiver:     { cardText: "Strength in you was never loud. It was the kind that quietly held everything together while everyone else fell apart. Like sandalwood and vetiver, you were rooted when we were not. You worked when no one was watching. You carried what no one knew you were carrying. [feedbackLine] The world stands because of mothers like you." },
@@ -961,19 +927,6 @@ const MESSAGES = {
   flowervalley:{ cardText: "You made everything lighter. That's a gift most people never name. Like a valley of flowers, you brought colour to seasons that would have otherwise been grey. You found reasons to celebrate when the rest of us forgot to look. You danced in the kitchen. You hummed during prayers. [feedbackLine] The world is more beautiful because you are in it." }
 };
 
-/* =====================================================
-   ✏️  CARD DESIGN — Card visual settings
-   ===================================================== */
-const CARD_DESIGN = {
-  bgColor: "#FDF6EC",
-  accentColor: "#D4A843",
-  fontColor: "#3E1F00",
-  borderStyle: "floral"
-};
-
-/* =====================================================
-   FEEDBACK LINES — maps answer index to replacement text
-   ===================================================== */
 const FEEDBACK_LINES = [
   "If you were here today, I know you would have stopped at every flower.",
   "If you were here today, you would have closed your eyes at the first fragrance.",
@@ -985,35 +938,24 @@ const FEEDBACK_LINES = [
    APP STATE
    ===================================================== */
 let state = {
-  name: "",
-  maaName: "",
-  city: "",
-  age: "",
-  selectedQualities: [],
-  fragranceId: null,
-  feedbackIndex: null,
-  source: ""
+  name: "", maaName: "", city: "", age: "",
+  selectedQualities: [], fragranceId: null,
+  feedbackIndex: null, openFeedback: "", source: ""
 };
 
 /* =====================================================
    INIT
    ===================================================== */
 window.addEventListener('DOMContentLoaded', () => {
-  // Read ref param
   const params = new URLSearchParams(window.location.search);
   state.source = params.get('ref') || 'direct';
-
-  // Fetch live count
   fetchCount();
-
-  // Build quality grid
   buildQualityGrid();
 });
 
 function fetchCount() {
   const el = document.getElementById('liveCount');
   if (!el) return;
-  // Read M1 directly from the public sheet as CSV — no auth, no CORS
   const sheetId = '1Garued2kgO7_XBimVZbUZkyDo2LaXSbClGngEnNxnR4';
   const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&range=M1`;
   fetch(url)
@@ -1039,20 +981,18 @@ function buildQualityGrid() {
 }
 
 /* =====================================================
-   SCREEN NAVIGATION
+   NAVIGATION
    ===================================================== */
 function goTo(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const next = document.getElementById('screen' + n);
-  next.classList.add('active');
+  document.getElementById('screen' + n).classList.add('active');
   window.scrollTo(0, 0);
-
   if (n === 4) populateReveal();
   if (n === 7) drawCanvas();
 }
 
 /* =====================================================
-   SCREEN 2 — DETAILS LOGIC
+   SCREEN 2
    ===================================================== */
 function selectAge(el, val) {
   document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
@@ -1073,26 +1013,19 @@ function checkDetails() {
    CITY AUTOCOMPLETE
    ===================================================== */
 const CITY_LIST = [
-  // UP & Dham belt — most likely for Vrindavan events
   "Vrindavan","Mathura","Agra","Aligarh","Meerut","Bareilly","Moradabad","Kanpur",
   "Lucknow","Gorakhpur","Varanasi","Prayagraj","Ayodhya","Jhansi","Noida","Ghaziabad",
   "Firozabad","Etawah","Mainpuri","Bulandshahr","Hapur","Muzaffarnagar","Saharanpur",
   "Rampur","Bijnor","Shahjahanpur","Lakhimpur","Sitapur","Unnao","Rae Bareli",
-  // Raj & MP
   "Jaipur","Jodhpur","Udaipur","Bikaner","Kota","Ajmer","Alwar","Bharatpur","Dhaulpur",
   "Bhopal","Indore","Gwalior","Ujjain","Sagar","Ratlam","Dewas","Mandsaur",
-  // Delhi NCR
   "Delhi","Gurgaon","Faridabad","Greater Noida","Sonipat","Panipat","Karnal",
-  // Haryana & Punjab
   "Chandigarh","Ludhiana","Amritsar","Jalandhar","Patiala","Ambala","Hisar","Rohtak",
-  // Bihar & Jharkhand
   "Patna","Muzaffarpur","Gaya","Bhagalpur","Darbhanga","Ranchi","Jamshedpur",
-  // Other major metros & cities
-  "Mumbai","Delhi","Bengaluru","Chennai","Hyderabad","Kolkata","Pune","Ahmedabad",
+  "Mumbai","Bengaluru","Chennai","Hyderabad","Kolkata","Pune","Ahmedabad",
   "Surat","Vadodara","Rajkot","Kochi","Coimbatore","Madurai","Vijayawada",
   "Visakhapatnam","Bhubaneswar","Raipur","Dehradun","Haridwar","Rishikesh",
   "Guwahati","Jammu","Srinagar","Leh","Nagpur","Aurangabad","Nashik","Kolhapur",
-  // Tirthas & smaller pilgrim towns
   "Dwarka","Tirupati","Shirdi","Nanded","Solapur","Pandharpur","Nathdwara",
   "Pushkar","Khatu Syamji","Govardhan","Barsana","Nandgaon","Deeg","Kamyavan"
 ];
@@ -1104,12 +1037,9 @@ function onCityInput() {
   const val = document.getElementById('userCity').value.trim().toLowerCase();
   const ul = document.getElementById('citySuggestions');
   cityHighlight = -1;
-
   if (val.length < 1) { ul.classList.remove('open'); ul.innerHTML = ''; return; }
-
   const matches = CITY_LIST.filter(c => c.toLowerCase().startsWith(val)).slice(0, 7);
   if (!matches.length) { ul.classList.remove('open'); ul.innerHTML = ''; return; }
-
   ul.innerHTML = matches.map(c => {
     const bold = `<strong>${c.slice(0, val.length)}</strong>${c.slice(val.length)}`;
     return `<li onmousedown="pickCity('${c}')">${bold}</li>`;
@@ -1125,12 +1055,9 @@ function pickCity(name) {
 }
 
 function hideCitySuggestions() {
-  setTimeout(() => {
-    document.getElementById('citySuggestions').classList.remove('open');
-  }, 150);
+  setTimeout(() => document.getElementById('citySuggestions').classList.remove('open'), 150);
 }
 
-/* also allow keyboard nav */
 document.addEventListener('keydown', function(e) {
   const ul = document.getElementById('citySuggestions');
   if (!ul || !ul.classList.contains('open')) return;
@@ -1141,27 +1068,27 @@ document.addEventListener('keydown', function(e) {
   else return;
   items.forEach((li,i) => li.classList.toggle('active', i === cityHighlight));
 });
+
+/* =====================================================
+   SCREEN 3
+   ===================================================== */
 function toggleQuality(card, q) {
   const isSelected = card.classList.contains('selected');
   if (!isSelected && state.selectedQualities.length >= 3) return;
-
   if (isSelected) {
     card.classList.remove('selected');
     state.selectedQualities = state.selectedQualities.filter(id => id !== q.id);
   } else {
     card.classList.add('selected');
     state.selectedQualities.push(q.id);
-    if (state.selectedQualities.length === 1) {
-      state.fragranceId = q.fragranceId;
-    }
+    if (state.selectedQualities.length === 1) state.fragranceId = q.fragranceId;
   }
-
   document.getElementById('qualityCount').textContent = state.selectedQualities.length;
   document.getElementById('btnQualities').disabled = state.selectedQualities.length !== 3;
 }
 
 /* =====================================================
-   SCREEN 4 — REVEAL
+   SCREEN 4
    ===================================================== */
 function populateReveal() {
   const frag = FRAGRANCES.find(f => f.id === state.fragranceId) || FRAGRANCES[0];
@@ -1172,7 +1099,7 @@ function populateReveal() {
 }
 
 /* =====================================================
-   SCREEN 5 — FEEDBACK SELECTION
+   SCREEN 5
    ===================================================== */
 function selectFeedback(el, idx) {
   document.querySelectorAll('.feedback-card').forEach(c => c.classList.remove('selected'));
@@ -1182,7 +1109,15 @@ function selectFeedback(el, idx) {
 }
 
 /* =====================================================
-   SCREEN 7 — CANVAS CARD
+   SCREEN 6
+   ===================================================== */
+function submitFeedbackAndContinue() {
+  state.openFeedback = document.getElementById('openFeedback').value.trim().replace(/[\r\n]+/g, ' ');
+  goTo(7);
+}
+
+/* =====================================================
+   SCREEN 7 — CANVAS
    ===================================================== */
 function drawCanvas() {
   const canvas = document.getElementById('shareCanvas');
@@ -1196,7 +1131,7 @@ function drawCanvas() {
   const feedbackLine = FEEDBACK_LINES[state.feedbackIndex] || FEEDBACK_LINES[0];
   const fullMsg = msgTemplate.cardText.replace('[feedbackLine]', feedbackLine);
 
-  // ── Background ──
+  // Background
   const bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
   bg.addColorStop(0, '#FDF6EC');
   bg.addColorStop(0.5, '#FFF8F0');
@@ -1204,24 +1139,33 @@ function drawCanvas() {
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, SIZE, SIZE);
 
-  // ── Borders ──
+  // Central lotus watermark (ISKCON-inspired)
+  drawCentralLotus(ctx, SIZE/2, SIZE/2, SIZE * 0.38);
+
+  // Borders
   ctx.strokeStyle = '#D4A843'; ctx.lineWidth = 6;
   ctx.strokeRect(24, 24, SIZE-48, SIZE-48);
   ctx.strokeStyle = '#F2C4CE'; ctx.lineWidth = 2;
   ctx.strokeRect(40, 40, SIZE-80, SIZE-80);
 
-  // ── Corner florals ──
+  // Corner florals
   drawFloral(ctx, 56, 56, 0);
   drawFloral(ctx, SIZE-56, 56, 90);
   drawFloral(ctx, SIZE-56, SIZE-56, 180);
   drawFloral(ctx, 56, SIZE-56, 270);
 
-  // ── Top decorative dots row ──
-  drawFloralBorder(ctx, SIZE, 80, 130);
+  // Peacock feather clusters (ISKCON motif) at inner corners
+  drawFeatherCluster(ctx, 130, 130, 80, false);
+  drawFeatherCluster(ctx, SIZE-130, 130, 80, true);
+  drawFeatherCluster(ctx, 130, SIZE-130, 80, false);
+  drawFeatherCluster(ctx, SIZE-130, SIZE-130, 80, true);
+  // Conch (shankha) stamps flanking center-top
+  drawConch(ctx, SIZE/2 - 380, 155, 34);
+  drawConch(ctx, SIZE/2 + 380, 155, 34);
 
-  // ════════════════════════════════════════
-  // ZONE 1: Dedication line  y=160..210
-  // ════════════════════════════════════════
+  drawTulsiBorder(ctx, SIZE, 105, 18);
+
+  // Dedication line
   ctx.font = 'italic 30px "Cormorant Garamond", serif';
   ctx.fillStyle = '#9b7b5a';
   ctx.textAlign = 'center';
@@ -1229,14 +1173,11 @@ function drawCanvas() {
 
   drawGoldLine(ctx, SIZE, 210);
 
-  // ════════════════════════════════════════
-  // ZONE 2: Fragrance name + tagline — measure first, center, then draw
-  // ════════════════════════════════════════
+  // Fragrance name block
   const FRAG_LINE_H = 90;
   const TAG_LINE_H  = 46;
-  const GAP_FT = 28; // gap between frag name and tagline
+  const GAP_FT = 28;
 
-  // Measure both blocks
   ctx.font = 'bold 68px "Cormorant Garamond", serif';
   const fragLines = getWrappedLines(ctx, `You are ${frag.name} —`, SIZE - 160);
   ctx.font = 'italic 32px "Cormorant Garamond", serif';
@@ -1246,52 +1187,40 @@ function drawCanvas() {
   const tagBlockH  = tagLines.length  * TAG_LINE_H;
   const totalZone2H = fragBlockH + GAP_FT + tagBlockH;
 
-  // Fix the zone between the two gold lines
   const ZONE2_TOP = 210;
-  const INNER_PAD = 40; // breathing room above and below content
+  const INNER_PAD = 40;
   const ZONE2_BOT = ZONE2_TOP + INNER_PAD + totalZone2H + INNER_PAD;
 
-  // Draw bottom gold line now that we know where it lands
   drawGoldLine(ctx, SIZE, ZONE2_BOT);
 
-  // Now draw text — centered inside the zone
   const contentStartY = ZONE2_TOP + INNER_PAD;
+  let drawY = contentStartY + FRAG_LINE_H - 16;
 
-  // Fragrance name — baseline of first line
-  let drawY = contentStartY + FRAG_LINE_H - 16; // -16 accounts for descender space
   ctx.font = 'bold 68px "Cormorant Garamond", serif';
   ctx.fillStyle = '#C8501A';
   ctx.textAlign = 'center';
-  fragLines.forEach((line, i) => {
-    ctx.fillText(line, SIZE/2, drawY + i * FRAG_LINE_H);
-  });
+  fragLines.forEach((line, i) => { ctx.fillText(line, SIZE/2, drawY + i * FRAG_LINE_H); });
 
-  // Tagline
   drawY += fragBlockH + GAP_FT;
   ctx.font = 'italic 32px "Cormorant Garamond", serif';
   ctx.fillStyle = '#6b3a00';
-  tagLines.forEach((line, i) => {
-    ctx.fillText(line, SIZE/2, drawY + i * TAG_LINE_H);
-  });
+  tagLines.forEach((line, i) => { ctx.fillText(line, SIZE/2, drawY + i * TAG_LINE_H); });
 
-  // Message starts after zone 2
   let curY = ZONE2_BOT + 44;
 
-  // ════════════════════════════════════════
-  // ZONE 3: Message — starts at curY
-  // ════════════════════════════════════════
-  const BOTTOM_RESERVE = 190;
+  // Message — larger font for elders to read comfortably
+  const BOTTOM_RESERVE = 220;
   const MSG_MAX_Y = SIZE - BOTTOM_RESERVE;
-  const MSG_LINE_H = 38;
+  const MSG_LINE_H = 52;
 
-  ctx.font = '26px "Cormorant Garamond", serif';
+  ctx.font = '34px "Cormorant Garamond", serif';
   ctx.fillStyle = '#3E1F00';
   ctx.textAlign = 'center';
 
   const msgWords = fullMsg.split(' ');
   let msgLine = '';
   let msgY = curY;
-  const maxMsgW = SIZE - 170;
+  const maxMsgW = SIZE - 160;
 
   for (let n = 0; n < msgWords.length; n++) {
     const test = msgLine + msgWords[n] + ' ';
@@ -1309,24 +1238,21 @@ function drawCanvas() {
     msgY += MSG_LINE_H;
   }
 
-  // ── Happy Mother's Day ──
   msgY += 18;
   ctx.font = 'bold 36px "Cormorant Garamond", serif';
   ctx.fillStyle = '#C8501A';
   ctx.textAlign = 'center';
   ctx.fillText("Happy Mother's Day, Maa. 🙏", SIZE/2, msgY);
 
-  // ── Divider + from line ──
   drawGoldLine(ctx, SIZE, msgY + 26);
   ctx.font = 'italic 26px "Cormorant Garamond", serif';
   ctx.fillStyle = '#9b7b5a';
   ctx.textAlign = 'right';
   ctx.fillText(`— ${state.name}, from ${state.city}`, SIZE - 80, msgY + 56);
 
-  // ── Bottom decorative dots row ──
-  drawFloralBorder(ctx, SIZE, SIZE - 120, SIZE - 80);
+  drawTulsiBorder(ctx, SIZE, SIZE - 108, 18);
+  drawTempleArch(ctx, SIZE, SIZE - 62, SIZE * 0.55, 110);
 
-  // ── Bottom labels ──
   ctx.font = '19px "Lato", sans-serif';
   ctx.fillStyle = '#b09070';
   ctx.textAlign = 'left';
@@ -1335,14 +1261,238 @@ function drawCanvas() {
   ctx.fillText('Mangaldeep', SIZE - 62, SIZE - 44);
 }
 
+
+/* ─────────────────────────────────────────────
+   ISKCON-INSPIRED CANVAS DESIGN HELPERS
+   Lotus · Peacock feather · Conch · Tulsi · Temple arch
+   ───────────────────────────────────────────── */
+
+// Large central lotus — drawn behind all text as a watermark
+function drawCentralLotus(ctx, cx, cy, r) {
+  ctx.save();
+  ctx.globalAlpha = 0.07;
+  const petalCount = 16;
+  for (let i = 0; i < petalCount; i++) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate((i * 2 * Math.PI) / petalCount);
+    // outer ring petals
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 0.6, r * 0.18, r * 0.52, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#C8501A';
+    ctx.fill();
+    ctx.restore();
+  }
+  // inner petals
+  ctx.globalAlpha = 0.09;
+  for (let i = 0; i < 8; i++) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate((i * 2 * Math.PI) / 8 + Math.PI / 8);
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 0.32, r * 0.13, r * 0.30, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#D4A843';
+    ctx.fill();
+    ctx.restore();
+  }
+  // centre circle
+  ctx.globalAlpha = 0.12;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 0.14, 0, Math.PI * 2);
+  ctx.fillStyle = '#D4A843';
+  ctx.fill();
+  ctx.restore();
+}
+
+// Peacock feather eye — used in corner clusters
+function drawPeacockFeather(ctx, x, y, len, angle) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+  ctx.globalAlpha = 0.28;
+  // quill
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, -len);
+  ctx.strokeStyle = '#4a7c3f';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  // barbs
+  for (let i = 0; i < 8; i++) {
+    const t = (i + 1) / 9;
+    const bx = 0, by = -len * t;
+    const blen = (len * 0.18) * (1 - Math.abs(t - 0.5));
+    ctx.beginPath();
+    ctx.moveTo(bx - blen, by);
+    ctx.lineTo(bx + blen, by);
+    ctx.strokeStyle = i < 4 ? '#6ab04c' : '#4a7c3f';
+    ctx.lineWidth = 1.2;
+    ctx.globalAlpha = 0.18;
+    ctx.stroke();
+  }
+  // eye at tip
+  ctx.globalAlpha = 0.30;
+  ctx.beginPath();
+  ctx.ellipse(0, -len, len * 0.14, len * 0.20, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#1a5276';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(0, -len, len * 0.09, len * 0.13, 0, 0, Math.PI * 2);
+  ctx.fillStyle = '#2ecc71';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(0, -len, len * 0.04, 0, Math.PI * 2);
+  ctx.fillStyle = '#1a252f';
+  ctx.fill();
+  ctx.restore();
+}
+
+// Small peacock feather cluster for corners
+function drawFeatherCluster(ctx, cx, cy, size, flip) {
+  const angles = [-0.35, 0, 0.35];
+  const flips = flip ? -1 : 1;
+  angles.forEach((a, i) => {
+    drawPeacockFeather(ctx, cx + flips * (i - 1) * size * 0.25, cy, size, a * flips);
+  });
+}
+
+// Conch shell (shankha) — top-right corner stamp
+function drawConch(ctx, cx, cy, r) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.globalAlpha = 0.18;
+  // main body spiral
+  ctx.beginPath();
+  ctx.ellipse(0, 0, r * 0.55, r * 0.85, -0.4, 0, Math.PI * 2);
+  ctx.fillStyle = '#f5f0e8';
+  ctx.strokeStyle = '#D4A843';
+  ctx.lineWidth = 2.5;
+  ctx.fill();
+  ctx.stroke();
+  // spiral lines
+  ctx.globalAlpha = 0.22;
+  for (let i = 0; i < 4; i++) {
+    const t = (i + 1) / 5;
+    ctx.beginPath();
+    ctx.ellipse(0, r * 0.1 * (i - 1.5), r * 0.3 * (1 - t * 0.3), r * 0.15, -0.4, 0, Math.PI);
+    ctx.strokeStyle = '#D4A843';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+  }
+  // tip
+  ctx.globalAlpha = 0.20;
+  ctx.beginPath();
+  ctx.moveTo(r * 0.3, -r * 0.7);
+  ctx.quadraticCurveTo(r * 0.7, -r * 0.5, r * 0.5, r * 0.1);
+  ctx.strokeStyle = '#C8501A';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.restore();
+}
+
+// Tulsi leaf border — replaces plain dot border
+function drawTulsiBorder(ctx, canvasWidth, y, leafCount) {
+  const spacing = canvasWidth / (leafCount + 1);
+  for (let i = 0; i <= leafCount; i++) {
+    const x = (i + 0.5) * spacing;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.globalAlpha = 0.22;
+    // Tulsi leaf oval
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 7, 13, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#4a7c3f';
+    ctx.fill();
+    // midrib
+    ctx.beginPath();
+    ctx.moveTo(0, -12); ctx.lineTo(0, 12);
+    ctx.strokeStyle = '#2d5a1b';
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.30;
+    ctx.stroke();
+    // stem
+    ctx.beginPath();
+    ctx.moveTo(0, 13); ctx.lineTo(0, 22);
+    ctx.strokeStyle = '#4a7c3f';
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 0.22;
+    ctx.stroke();
+    ctx.restore();
+    // gold dot between leaves
+    if (i < leafCount) {
+      const dx = (i + 1) * spacing;
+      ctx.save();
+      ctx.globalAlpha = 0.3;
+      ctx.beginPath();
+      ctx.arc(dx, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#D4A843';
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+}
+
+// ISKCON temple arch silhouette — bottom decorative strip
+function drawTempleArch(ctx, canvasWidth, y, w, h) {
+  ctx.save();
+  ctx.translate((canvasWidth - w) / 2, y);
+  ctx.globalAlpha = 0.10;
+  ctx.fillStyle = '#C8501A';
+
+  // central shikhara (tallest spire)
+  function shikhara(cx, baseY, bw, bh, tiers) {
+    for (let t = 0; t < tiers; t++) {
+      const ratio = 1 - t / tiers;
+      const tw = bw * ratio;
+      const th = bh / tiers;
+      ctx.beginPath();
+      ctx.rect(cx - tw / 2, baseY - th * (t + 1), tw, th);
+      ctx.fill();
+    }
+    // amalaka (crown)
+    ctx.beginPath();
+    ctx.ellipse(cx, baseY - bh, bw * 0.3, bw * 0.18, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // kalasha (finial)
+    ctx.beginPath();
+    ctx.arc(cx, baseY - bh - bw * 0.22, bw * 0.09, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const base = h;
+  // side small spires
+  shikhara(w * 0.18, base, w * 0.10, h * 0.50, 5);
+  shikhara(w * 0.82, base, w * 0.10, h * 0.50, 5);
+  // mid spires
+  shikhara(w * 0.35, base, w * 0.13, h * 0.68, 6);
+  shikhara(w * 0.65, base, w * 0.13, h * 0.68, 6);
+  // central main shikhara
+  shikhara(w * 0.50, base, w * 0.18, h * 0.90, 8);
+
+  // base platform
+  ctx.beginPath();
+  ctx.rect(0, base - h * 0.08, w, h * 0.08);
+  ctx.fill();
+
+  // arched gateway
+  ctx.globalAlpha = 0.07;
+  ctx.beginPath();
+  ctx.rect(w * 0.42, base - h * 0.30, w * 0.16, h * 0.22);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(w * 0.50, base - h * 0.30, w * 0.08, Math.PI, 0);
+  ctx.fill();
+
+  ctx.restore();
+}
+/* helpers */
 function drawFloral(ctx, x, y, rotation) {
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(rotation * Math.PI / 180);
-  const petals = 5;
-  for (let i = 0; i < petals; i++) {
+  for (let i = 0; i < 5; i++) {
     ctx.save();
-    ctx.rotate((i * 2 * Math.PI) / petals);
+    ctx.rotate((i * 2 * Math.PI) / 5);
     ctx.beginPath();
     ctx.ellipse(0, -14, 5, 12, 0, 0, Math.PI*2);
     ctx.fillStyle = i % 2 === 0 ? '#F2C4CE' : '#D4A843';
@@ -1371,7 +1521,6 @@ function drawFloralBorder(ctx, canvasWidth, yStart, yEnd) {
     ctx.fillStyle = '#D4A843';
     ctx.fill();
     ctx.restore();
-
     if (i % 3 === 0) {
       ctx.save();
       ctx.globalAlpha = 0.2;
@@ -1415,41 +1564,6 @@ function getWrappedLines(ctx, text, maxWidth) {
   return lines;
 }
 
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = text.split(' ');
-  let line = '';
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + ' ';
-      y += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-  ctx.fillText(line, x, y);
-}
-
-function wrapTextReturn(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = text.split(' ');
-  let line = '';
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + ' ';
-      y += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-  ctx.fillText(line, x, y);
-  return y + lineHeight;
-}
-
 /* =====================================================
    SAVE IMAGE
    ===================================================== */
@@ -1462,30 +1576,51 @@ function saveImage() {
 }
 
 /* =====================================================
-   SHARE ON WHATSAPP
+   SHARE ON WHATSAPP — new 2-step flow
    ===================================================== */
+let whatsappShareDone = false;
+
 function shareWhatsApp() {
+  // Step 1: Save the card to the device
+  saveImage();
+
   logSubmission();
   incrementCounter();
 
-  const msg = encodeURIComponent(
-    `Maa, I dedicated a fragrance to you this Mother's Day 🌸 I'm sending you something — please open it when you see it 🙏 — ${state.name}`
-  );
-  window.open(`https://wa.me/?text=${msg}`, '_blank');
+  // Step 2: Show the attachment guide hint with filename
+  const hint    = document.getElementById('shareStep2Hint');
+  const btn     = document.getElementById('btnWhatsApp');
+  const nudge   = document.getElementById('shareNudge');
+  const fnEl    = document.getElementById('savedFileName');
+  const fileName = `For-${state.maaName.replace(/\s+/g,'-')}-Mangaldeep.png`;
+  if (fnEl) fnEl.textContent = fileName;
 
-  // Show closing line in place — user stays on this screen
+  if (hint)  hint.style.display = 'block';
+  if (nudge) nudge.style.display = 'none';
+
+  // Change button to "open WhatsApp" only mode after first tap
+  if (btn && !whatsappShareDone) {
+    whatsappShareDone = true;
+    btn.innerHTML = 'Open WhatsApp 💚';
+    btn.onclick = openWhatsApp;
+  }
+
+  // Step 3: Open WhatsApp slightly delayed so browser download dialog doesn't block popup
+  setTimeout(openWhatsApp, 700);
+
+  // Show closing message
   const closing = document.getElementById('closingLine');
-  const thankyouMsg = document.getElementById('thankyouMsg');
-  if (thankyouMsg) thankyouMsg.textContent = `${state.name}, you just made ${state.maaName}'s day a little more divine 🌸`;
-  if (closing) closing.style.display = 'block';
+  if (closing) {
+    closing.textContent = `${state.name}, you just made ${state.maaName}'s day a little more divine 🌸`;
+    closing.style.display = 'block';
+  }
 }
 
-/* =====================================================
-   SCREEN 6 — FEEDBACK BEFORE CARD
-   ===================================================== */
-function submitFeedbackAndContinue() {
-  state.openFeedback = document.getElementById('openFeedback').value.trim().replace(/[\r\n]+/g, ' ');
-  goTo(7);
+function openWhatsApp() {
+  const msg = encodeURIComponent(
+    `Maa, I dedicated a fragrance just for you this Mother's Day 🌸\n\nI've saved a card for you on my phone — sending it to you now 🙏\n\nHappy Mother's Day! 🪔\n— ${state.name}\n\n(Made with Mangaldeep)`
+  );
+  window.open(`https://wa.me/?text=${msg}`, '_blank');
 }
 
 /* =====================================================
@@ -1512,10 +1647,8 @@ function logSubmission() {
 }
 
 function incrementCounter() {
-  // Bump UI immediately so user sees it change
   const el = document.getElementById('liveCount');
   if (el) el.textContent = parseInt(el.textContent || CONFIG.seedCount) + 1;
-  // Then re-fetch real number from sheet after a short delay
   setTimeout(fetchCount, 3000);
 }
 </script>
